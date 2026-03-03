@@ -64,8 +64,8 @@ if (form) {
     e.preventDefault();
 
     const receiver = "info@westzipfelcamp.de";
-
     const data = new FormData(form);
+
     const name = data.get("name") || "";
     const email = data.get("email") || "";
     const from = data.get("from") || "";
@@ -102,11 +102,27 @@ const dotsWrap = document.querySelector("[data-gallery-dots]");
 const prevBtn = document.querySelector("[data-gallery-prev]");
 const nextBtn = document.querySelector("[data-gallery-next]");
 
+let autoTimer = null;
+let isPaused = false;
+const INTERVAL_MS = 4500;
+
+function stopAuto() {
+  if (autoTimer) window.clearInterval(autoTimer);
+  autoTimer = null;
+}
+function startAuto(nextFn) {
+  stopAuto();
+  autoTimer = window.setInterval(() => {
+    if (!isPaused) nextFn();
+  }, INTERVAL_MS);
+}
+function pauseAuto(temp = true) {
+  isPaused = true;
+  if (temp) window.setTimeout(() => { isPaused = false; }, 8000);
+}
+
 if (gallery) {
   const slides = Array.from(gallery.querySelectorAll(".slide"));
-  let autoTimer = null;
-  let isPaused = false;
-  const INTERVAL_MS = 4500;
 
   if (dotsWrap) {
     dotsWrap.innerHTML = "";
@@ -162,21 +178,6 @@ if (gallery) {
     t = window.setTimeout(() => setActiveDot(getCurrentIndex()), 80);
   });
 
-  function startAuto() {
-    stopAuto();
-    autoTimer = window.setInterval(() => {
-      if (!isPaused) next();
-    }, INTERVAL_MS);
-  }
-  function stopAuto() {
-    if (autoTimer) window.clearInterval(autoTimer);
-    autoTimer = null;
-  }
-  function pauseAuto(temp) {
-    isPaused = true;
-    if (temp) window.setTimeout(() => { isPaused = false; }, 8000);
-  }
-
   gallery.addEventListener("mouseenter", () => isPaused = true);
   gallery.addEventListener("mouseleave", () => isPaused = false);
   gallery.addEventListener("touchstart", () => pauseAuto(true), { passive: true });
@@ -186,5 +187,79 @@ if (gallery) {
   });
 
   setActiveDot(0);
-  startAuto();
+  startAuto(next);
 }
+
+/* ===== Lightbox (Vollbild) ===== */
+const lightbox = document.getElementById("lightbox");
+const lightboxImg = document.getElementById("lightboxImg");
+const lightboxCap = document.getElementById("lightboxCap");
+
+const lbClose = document.querySelector("[data-lightbox-close]");
+const lbPrev = document.querySelector("[data-lightbox-prev]");
+const lbNext = document.querySelector("[data-lightbox-next]");
+
+let lbIndex = 0;
+let lbItems = [];
+
+function setLightbox(index) {
+  if (!lbItems.length) return;
+  lbIndex = (index + lbItems.length) % lbItems.length;
+
+  const { src, alt, cap } = lbItems[lbIndex];
+  lightboxImg.src = src;
+  lightboxImg.alt = alt || "";
+  lightboxCap.textContent = cap || "";
+}
+
+function openLightbox(index) {
+  if (!lightbox) return;
+  pauseAuto(true); // Auto-Slider kurz pausieren
+  setLightbox(index);
+  lightbox.showModal();
+}
+
+function closeLightbox() {
+  if (!lightbox) return;
+  lightbox.close();
+}
+
+if (gallery) {
+  const figures = Array.from(gallery.querySelectorAll(".slide"));
+
+  lbItems = figures.map(fig => {
+    const img = fig.querySelector("img");
+    const cap = fig.querySelector("figcaption")?.textContent?.trim() || "";
+    return { src: img?.getAttribute("src") || "", alt: img?.getAttribute("alt") || "", cap };
+  });
+
+  figures.forEach((fig, i) => {
+    const btn = fig.querySelector("[data-lightbox-open]");
+    btn?.addEventListener("click", () => openLightbox(i));
+  });
+}
+
+lbClose?.addEventListener("click", closeLightbox);
+lbPrev?.addEventListener("click", () => setLightbox(lbIndex - 1));
+lbNext?.addEventListener("click", () => setLightbox(lbIndex + 1));
+
+/* Klick außerhalb Bild schließt */
+lightbox?.addEventListener("click", (e) => {
+  const rect = lightboxImg?.getBoundingClientRect();
+  if (!rect) return;
+  const inside =
+    e.clientX >= rect.left && e.clientX <= rect.right &&
+    e.clientY >= rect.top && e.clientY <= rect.bottom;
+
+  // Wenn Klick nicht im Bild/Buttons ist -> schließen
+  const clickedButton = (e.target instanceof Element) && e.target.closest("button");
+  if (!inside && !clickedButton) closeLightbox();
+});
+
+/* Tastatursteuerung */
+window.addEventListener("keydown", (e) => {
+  if (!lightbox || !lightbox.open) return;
+  if (e.key === "Escape") closeLightbox();
+  if (e.key === "ArrowLeft") setLightbox(lbIndex - 1);
+  if (e.key === "ArrowRight") setLightbox(lbIndex + 1);
+});
