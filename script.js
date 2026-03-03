@@ -96,7 +96,7 @@ ${name}`;
   });
 }
 
-/* ===== Swipe Galerie ===== */
+/* ===== Galerie: Auto + Swipe (1 Bild) ===== */
 const gallery = document.querySelector("[data-gallery]");
 const dotsWrap = document.querySelector("[data-gallery-dots]");
 const prevBtn = document.querySelector("[data-gallery-prev]");
@@ -104,6 +104,9 @@ const nextBtn = document.querySelector("[data-gallery-next]");
 
 if (gallery) {
   const slides = Array.from(gallery.querySelectorAll(".slide"));
+  let autoTimer = null;
+  let isPaused = false;
+  const INTERVAL_MS = 4500;
 
   // Dots erstellen
   if (dotsWrap) {
@@ -113,26 +116,17 @@ if (gallery) {
       b.type = "button";
       b.className = "dot";
       b.setAttribute("aria-label", `Bild ${i + 1}`);
-      b.addEventListener("click", () => scrollToSlide(i));
+      b.addEventListener("click", () => {
+        pauseAuto(true);
+        scrollToSlide(i);
+      });
       dotsWrap.appendChild(b);
     });
   }
 
   function getCurrentIndex() {
-    const gRect = gallery.getBoundingClientRect();
-    const center = gRect.left + gRect.width / 2;
-
-    let bestIdx = 0;
-    let bestDist = Infinity;
-
-    slides.forEach((s, i) => {
-      const r = s.getBoundingClientRect();
-      const sCenter = r.left + r.width / 2;
-      const dist = Math.abs(sCenter - center);
-      if (dist < bestDist) { bestDist = dist; bestIdx = i; }
-    });
-
-    return bestIdx;
+    const w = gallery.clientWidth || 1;
+    return Math.round(gallery.scrollLeft / w);
   }
 
   function setActiveDot(i) {
@@ -143,28 +137,60 @@ if (gallery) {
   }
 
   function scrollToSlide(i) {
-    const target = slides[i];
-    if (!target) return;
-    target.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
-    setActiveDot(i);
+    const clamped = Math.max(0, Math.min(slides.length - 1, i));
+    gallery.scrollTo({ left: clamped * gallery.clientWidth, behavior: "smooth" });
+    setActiveDot(clamped);
   }
 
-  function scrollByOne(dir) {
+  function next() {
     const idx = getCurrentIndex();
-    const next = Math.max(0, Math.min(slides.length - 1, idx + dir));
-    scrollToSlide(next);
+    const nxt = (idx + 1) % slides.length;
+    scrollToSlide(nxt);
   }
 
-  prevBtn?.addEventListener("click", () => scrollByOne(-1));
-  nextBtn?.addEventListener("click", () => scrollByOne(1));
+  function prev() {
+    const idx = getCurrentIndex();
+    const prv = (idx - 1 + slides.length) % slides.length;
+    scrollToSlide(prv);
+  }
 
-  // Dot-Highlight beim Scrollen
+  prevBtn?.addEventListener("click", () => { pauseAuto(true); prev(); });
+  nextBtn?.addEventListener("click", () => { pauseAuto(true); next(); });
+
+  // Bei Scroll (Swipe/Trackpad) aktiven Dot nachziehen
   let t;
   gallery.addEventListener("scroll", () => {
     window.clearTimeout(t);
     t = window.setTimeout(() => setActiveDot(getCurrentIndex()), 80);
   });
 
+  // Auto-Play
+  function startAuto() {
+    stopAuto();
+    autoTimer = window.setInterval(() => {
+      if (!isPaused) next();
+    }, INTERVAL_MS);
+  }
+  function stopAuto() {
+    if (autoTimer) window.clearInterval(autoTimer);
+    autoTimer = null;
+  }
+  function pauseAuto(temp) {
+    isPaused = true;
+    if (temp) window.setTimeout(() => { isPaused = false; }, 8000);
+  }
+
+  // Pause bei Interaktion
+  gallery.addEventListener("mouseenter", () => isPaused = true);
+  gallery.addEventListener("mouseleave", () => isPaused = false);
+  gallery.addEventListener("touchstart", () => pauseAuto(true), { passive: true });
+
+  // Bei Resize ausrichten
+  window.addEventListener("resize", () => {
+    scrollToSlide(getCurrentIndex());
+  });
+
   // Initial
   setActiveDot(0);
+  startAuto();
 }
