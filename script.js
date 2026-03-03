@@ -41,7 +41,7 @@ if (impressumLink) {
     e.preventDefault();
     openLegal(
       "Impressum (Platzhalter)",
-      "Bitte ergänze hier dein Impressum (Betreiber, Adresse, Kontakt, ggf. USt-ID). Wenn du mir die Daten gibst, formuliere ich dir eine passende Vorlage."
+      "Bitte ergänze hier dein Impressum (Betreiber, Adresse, Kontakt, ggf. USt-ID). Wenn du mir Betreibername/Adresse gibst, formuliere ich dir eine passende Vorlage."
     );
   });
 }
@@ -50,7 +50,7 @@ if (datenschutzLink) {
     e.preventDefault();
     openLegal(
       "Datenschutz (Platzhalter)",
-      "Bitte ergänze hier deine Datenschutzerklärung. Diese Seite nutzt aktuell keine Tracking-Tools; eingebettet ist nur eine OpenStreetMap-Karte. Wenn du mir sagst, ob du Analytics/Fonts/YouTube nutzen willst, erstelle ich dir den passenden Text."
+      "Bitte ergänze hier deine Datenschutzerklärung. Diese Seite nutzt aktuell keine Tracking-Tools; eingebettet ist nur eine OpenStreetMap-Karte. Wenn du mir sagst, ob du Analytics/YouTube nutzen willst, erstelle ich dir den passenden Text."
     );
   });
 }
@@ -64,8 +64,7 @@ if (form) {
   form.addEventListener("submit", (e) => {
     e.preventDefault();
 
-    // TODO: Hier deine echte E-Mail eintragen:
-    const receiver = "DEINE_EMAIL@BEISPIEL.DE";
+    const receiver = "info@westzipfelcamp.de";
 
     const data = new FormData(form);
     const name = data.get("name") || "";
