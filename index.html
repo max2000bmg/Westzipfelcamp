@@ -7,149 +7,277 @@
   <meta name="description" content="Westzipfelcamp in 52525 Waldfeucht – naturverbunden, freundlich und modern." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;500;700;800&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="styles.css" />
   <script defer src="script.js"></script>
 </head>
 
 <body>
+  <a class="skip-link" href="#content">Zum Inhalt</a>
 
-<header class="header">
-  <div class="container header__inner">
-    <div class="brand">
-      <div class="brand__mark">🌿</div>
-      <div>
-        <div class="brand__name">Westzipfelcamp</div>
-        <div class="brand__sub">Schulstr. 61 • 52525 Waldfeucht</div>
-      </div>
-    </div>
-    <nav class="nav">
-      <a href="#camp">Campingplatz</a>
-      <a href="#ausstattung">Ausstattung</a>
-      <a href="#preise">Preise</a>
-      <a href="#kontakt" class="btn btn--small">Anfragen</a>
-    </nav>
-  </div>
-</header>
-
-<section class="hero">
-  <div class="container">
-    <h1>Dein fröhlicher Rückzugsort im Grünen</h1>
-    <p>Modern, offen und naturbezogen – für Campingfans und entspannte Auszeiten.</p>
-    <a href="#kontakt" class="btn">Jetzt anfragen</a>
-  </div>
-</section>
-
-<section id="camp" class="section">
-  <div class="container">
-    <h2>Westzipfelcamp</h2>
-    <p>Ein kleiner Campingplatz mit entspannter Atmosphäre – ideal für alle, die Natur lieben.</p>
-  </div>
-</section>
-
-<section id="ausstattung" class="section section--soft">
-  <div class="container">
-    <h2>Ausstattung</h2>
-    <ul class="simple-list">
-      <li>Sanitär & Duschen</li>
-      <li>Strom am Stellplatz</li>
-      <li>Spülbereich</li>
-      <li>Hunde willkommen</li>
-    </ul>
-  </div>
-</section>
-
-<section id="preise" class="section">
-  <div class="container">
-    <h2>Preise</h2>
-
-    <div class="price-grid">
-
-      <div class="price price--highlight">
-        <h3>Basic</h3>
-        <div class="price__num">8€</div>
-        <div class="price__note">pro Nacht</div>
-        <ul>
-          <li>Stellfläche</li>
-          <li>Zugang zu Sanitäreinrichtungen</li>
-          <li>+ 0,50€ pro Nutzung der Dusche</li>
-          <li>+ 1€ pro 100L Wasser</li>
-        </ul>
-        <a href="#kontakt" class="btn btn--small">Anfragen</a>
+  <header class="header">
+    <div class="container header__inner">
+      <div class="brand">
+        <div class="brand__mark" aria-hidden="true">🌿</div>
+        <div class="brand__text">
+          <div class="brand__name">Westzipfelcamp</div>
+          <div class="brand__sub">Schulstr. 61 • 52525 Waldfeucht</div>
+        </div>
       </div>
 
-      <div class="price">
-        <h3>Komfort</h3>
-        <div class="price__num">11€</div>
-        <div class="price__note">pro Nacht</div>
-        <ul>
-          <li>Stellfläche</li>
-          <li>Strom</li>
-          <li>Zugang zu Sanitäreinrichtungen</li>
-          <li>+ 0,50€ pro Nutzung der Dusche</li>
-          <li>+ 1€ pro 100L Wasser</li>
-        </ul>
-        <a href="#kontakt" class="btn btn--small">Anfragen</a>
+      <button class="nav-toggle" aria-label="Menü öffnen" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="nav" aria-label="Hauptnavigation">
+        <a href="#camp">Westzipfelcamp</a>
+        <a href="#preise">Preise</a>
+        <a class="btn btn--small" href="#kontakt">Anfragen</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="content">
+
+    <!-- HERO mit echtem Bild -->
+    <section class="hero hero--photo" aria-label="Startbereich">
+      <div class="hero__bg" aria-hidden="true"></div>
+      <div class="hero__overlay" aria-hidden="true"></div>
+
+      <div class="container hero__inner">
+        <div class="pill">🌞 Natur • Ruhe • Wohlfühlen</div>
+        <h1>Dein fröhlicher Rückzugsort im Grünen.</h1>
+        <p>
+          Willkommen im <strong>Westzipfelcamp</strong> in <strong>Waldfeucht</strong>.
+          Ein kleiner, offener Platz mit viel Grün – für entspannte Nächte und echte Auszeit.
+        </p>
+
+        <div class="hero__cta">
+          <a class="btn" href="#kontakt">Verfügbarkeit anfragen</a>
+          <a class="btn btn--ghost" href="#camp">Mehr erfahren</a>
+        </div>
+
+        <div class="hero__highlights" aria-label="Highlights">
+          <div class="chip">⛺ Stellplätze</div>
+          <div class="chip">🚿 Sanitär</div>
+          <div class="chip">⚡ Komfort mit Strom</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WESTZIPFELCAMP -->
+    <section id="camp" class="section">
+      <div class="container">
+        <div class="section__header">
+          <h2>Westzipfelcamp</h2>
+          <p class="lead">
+            Klein, ruhig und naturbezogen – hier geht’s ums Ankommen, Durchatmen und das gute Campinggefühl.
+          </p>
+        </div>
+
+        <div class="grid-2">
+          <div class="card camp-text">
+            <p>
+              Bei uns campst du unkompliziert und angenehm: <strong>großzügige Stellflächen</strong> im Grünen, ein offenes Platzgefühl
+              und kurze Wege. Für den Alltag vor Ort stehen <strong>Sanitäreinrichtungen</strong> sowie <strong>Duschen</strong> bereit.
+              Wasser kannst du nach Verbrauch nutzen – praktisch zum Auffüllen oder fürs Abspülen.
+            </p>
+            <p>
+              Wer es besonders bequem mag, wählt das <strong>Komfort-Paket</strong> mit <strong>Strom</strong>.
+              Und an warmen Tagen gibt’s ein Extra: Ein <strong>Pool</strong> ist <strong>nach Absprache mit dem Eigentümer</strong> nutzbar.
+              So bleibt der Aufenthalt entspannt – genau so, wie Camping sein soll.
+            </p>
+
+            <ul class="checklist" aria-label="Kurzüberblick Ausstattung">
+              <li>Sanitäreinrichtungen & Duschen</li>
+              <li>Wasser nach Verbrauch</li>
+              <li>Komfort-Paket inkl. Strom</li>
+              <li>Pool nach Absprache nutzbar</li>
+              <li>Ruhig, freundlich & naturbezogen</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3 class="card__title">Einblicke</h3>
+
+            <div class="gallery-wrap" aria-label="Bildergalerie Westzipfelcamp">
+              <div class="gallery-head">
+                <div class="gallery-controls">
+                  <button class="gbtn" type="button" data-gallery-prev aria-label="Vorheriges Bild">‹</button>
+                  <button class="gbtn" type="button" data-gallery-next aria-label="Nächstes Bild">›</button>
+                </div>
+              </div>
+
+              <div class="gallery" data-gallery>
+                <figure class="slide">
+                  <img src="assets/1.jpg" alt="Westzipfelcamp – Stellplatz im Grünen" loading="lazy">
+                  <figcaption>Stellplatz</figcaption>
+                </figure>
+
+                <figure class="slide">
+                  <img src="assets/2.jpg" alt="Westzipfelcamp – Poolbereich" loading="lazy">
+                  <figcaption>Pool</figcaption>
+                </figure>
+
+                <figure class="slide">
+                  <img src="assets/3.jpg" alt="Westzipfelcamp – Sanitäreinrichtungen" loading="lazy">
+                  <figcaption>Sanitäreinrichtungen</figcaption>
+                </figure>
+
+                <figure class="slide">
+                  <img src="assets/4.jpg" alt="Westzipfelcamp – Sanitäreinrichtungen" loading="lazy">
+                  <figcaption>Sanitäreinrichtungen</figcaption>
+                </figure>
+
+                <figure class="slide">
+                  <img src="assets/5.jpg" alt="Westzipfelcamp – Stellplatz mit viel Grünfläche" loading="lazy">
+                  <figcaption>Stellplatz</figcaption>
+                </figure>
+              </div>
+
+              <div class="dots" data-gallery-dots aria-label="Galerie-Navigation"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PREISE -->
+    <section id="preise" class="section section--soft">
+      <div class="container">
+        <div class="section__header">
+          <h2>Preise</h2>
+        </div>
+
+        <div class="price-grid">
+          <div class="price price--highlight">
+            <div class="price__top">
+              <h3>Basic</h3>
+              <span class="price__tag">8€ / Nacht</span>
+            </div>
+            <ul>
+              <li>Stellfläche</li>
+              <li>Zugang zu Sanitäreinrichtungen</li>
+              <li>+ 0,50€ pro Nutzung der Dusche</li>
+              <li>+ 1€ pro 100L Wasser</li>
+            </ul>
+          </div>
+
+          <div class="price">
+            <div class="price__top">
+              <h3>Komfort</h3>
+              <span class="price__tag">11€ / Nacht</span>
+            </div>
+            <ul>
+              <li>Stellfläche</li>
+              <li>Strom</li>
+              <li>Zugang zu Sanitäreinrichtungen</li>
+              <li>+ 0,50€ pro Nutzung der Dusche</li>
+              <li>+ 1€ pro 100L Wasser</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- KONTAKT -->
+    <section id="kontakt" class="section">
+      <div class="container">
+        <div class="section__header">
+          <h2>Kontakt & Anfrage</h2>
+          <p class="lead">Schreib uns kurz, wann du kommen möchtest – wir melden uns schnell zurück.</p>
+        </div>
+
+        <div class="contact-grid">
+          <form class="form" id="inquiryForm">
+            <div class="form__row">
+              <label for="name">Name</label>
+              <input id="name" name="name" autocomplete="name" required placeholder="Vor- und Nachname" />
+            </div>
+
+            <div class="form__row">
+              <label for="email">E-Mail</label>
+              <input id="email" name="email" type="email" autocomplete="email" required placeholder="name@mail.de" />
+            </div>
+
+            <div class="form__row two">
+              <div>
+                <label for="from">Anreise</label>
+                <input id="from" name="from" type="date" required />
+              </div>
+              <div>
+                <label for="to">Abreise</label>
+                <input id="to" name="to" type="date" required />
+              </div>
+            </div>
+
+            <div class="form__row">
+              <label for="type">Camping-Paket</label>
+              <select id="type" name="type">
+                <option>Basic</option>
+                <option>Komfort</option>
+              </select>
+            </div>
+
+            <div class="form__row">
+              <label for="message">Nachricht</label>
+              <textarea id="message" name="message" rows="5" placeholder="Anzahl Personen, Wünsche …"></textarea>
+            </div>
+
+            <button class="btn" type="submit">Anfrage per E-Mail vorbereiten</button>
+            <p class="fineprint">Der Button öffnet dein E-Mail-Programm mit einer fertigen Anfrage.</p>
+          </form>
+
+          <div class="contact-card">
+            <div class="contact-card__top">
+              <h3>Westzipfelcamp</h3>
+              <p class="muted">Schulstr. 61, 52525 Waldfeucht</p>
+            </div>
+
+            <div class="contact-lines">
+              <div><strong>E-Mail:</strong> <a href="mailto:info@westzipfelcamp.de">info@westzipfelcamp.de</a></div>
+              <div><strong>Telefon:</strong> <a href="tel:+491786065840">01786 065840</a></div>
+            </div>
+
+            <div class="map">
+              <iframe
+                title="Karte (OpenStreetMap)"
+                src="https://www.openstreetmap.org/export/embed.html?bbox=5.995833%2C51.041667%2C6.015833%2C51.061667&amp;layer=mapnik&amp;marker=51.051667%2C6.005833"
+                loading="lazy">
+              </iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="container footer__inner">
+        <div>
+          <div class="footer__brand">Westzipfelcamp</div>
+          <div class="footer__meta">© <span id="year"></span> • Schulstr. 61, 52525 Waldfeucht</div>
+        </div>
+
+        <div class="footer__links">
+          <a href="#" id="impressumLink">Impressum</a>
+          <a href="#" id="datenschutzLink">Datenschutz</a>
+        </div>
       </div>
 
-    </div>
-  </div>
-</section>
+      <dialog id="legalDialog" class="dialog">
+        <div class="dialog__inner">
+          <h3 id="legalTitle">Hinweis</h3>
+          <p id="legalText" class="muted">
+            Bitte ergänze hier dein Impressum/Datenschutz. Wenn du mir Betreibername/Adresse gibst, formuliere ich dir eine passende Vorlage.
+          </p>
+          <button class="btn btn--small" id="closeDialog">Schließen</button>
+        </div>
+      </dialog>
+    </footer>
 
-<section id="kontakt" class="section">
-  <div class="container">
-    <h2>Kontakt & Anfrage</h2>
-
-    <form id="inquiryForm" class="form">
-      <label>Name</label>
-      <input name="name" required>
-
-      <label>E-Mail</label>
-      <input name="email" type="email" required>
-
-      <label>Anreise</label>
-      <input name="from" type="date" required>
-
-      <label>Abreise</label>
-      <input name="to" type="date" required>
-
-      <label>Camping-Paket</label>
-      <select name="type">
-        <option>Basic</option>
-        <option>Komfort</option>
-      </select>
-
-      <label>Nachricht</label>
-      <textarea name="message"></textarea>
-
-      <button class="btn">Anfrage vorbereiten</button>
-    </form>
-
-    <div class="contact-info">
-      <p><strong>Adresse:</strong> Schulstr. 61, 52525 Waldfeucht</p>
-      <p><strong>E-Mail:</strong> <a href="mailto:info@westzipfelcamp.de">info@westzipfelcamp.de</a></p>
-      <p><strong>Telefon:</strong> <a href="tel:+491786065840">01786 065840</a></p>
-    </div>
-
-    <div class="map">
-      <iframe
-        src="https://www.openstreetmap.org/export/embed.html?bbox=5.995833%2C51.041667%2C6.015833%2C51.061667&amp;layer=mapnik&amp;marker=51.051667%2C6.005833">
-      </iframe>
-    </div>
-  </div>
-</section>
-
-<footer class="footer">
-  <div class="container footer__inner">
-    <div>
-      © <span id="year"></span> Westzipfelcamp
-    </div>
-    <div class="footer__links">
-      <a href="#">Impressum</a>
-      <a href="#">Datenschutz</a>
-    </div>
-  </div>
-</footer>
-
+  </main>
 </body>
 </html>
