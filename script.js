@@ -294,3 +294,85 @@ lightboxImg?.addEventListener("touchend", (e) => {
     else setLightbox(lbIndex - 1);
   }
 }, { passive: true });
+/* =======================
+   Rezensionen Slider (Auto + Swipe)
+======================= */
+const reviews = document.querySelector("[data-reviews]");
+const reviewsDotsWrap = document.querySelector("[data-reviews-dots]");
+const reviewsPrevBtn = document.querySelector("[data-reviews-prev]");
+const reviewsNextBtn = document.querySelector("[data-reviews-next]");
+
+let reviewsTimer = null;
+let reviewsPaused = false;
+
+// nutzt dieselbe Variable aus deinem Lightbox-Code:
+// let isLightboxOpen = false;
+
+function stopReviewsAuto(){
+  if (reviewsTimer) clearInterval(reviewsTimer);
+  reviewsTimer = null;
+}
+
+function startReviewsAuto(nextFn){
+  stopReviewsAuto();
+  reviewsTimer = setInterval(() => {
+    if (!reviewsPaused && !isLightboxOpen) nextFn();
+  }, 5200);
+}
+
+function pauseReviewsTemp(){
+  reviewsPaused = true;
+  setTimeout(() => reviewsPaused = false, 8000);
+}
+
+if (reviews) {
+  const slides = Array.from(reviews.querySelectorAll(".review-slide"));
+
+  function getIndex(){
+    const w = reviews.clientWidth || 1;
+    return Math.round(reviews.scrollLeft / w);
+  }
+
+  function setDot(i){
+    if (!reviewsDotsWrap) return;
+    reviewsDotsWrap.querySelectorAll(".dot").forEach((d, idx) => {
+      d.classList.toggle("is-active", idx === i);
+    });
+  }
+
+  function scrollTo(i){
+    const idx = (i + slides.length) % slides.length;
+    reviews.scrollTo({ left: idx * reviews.clientWidth, behavior: "smooth" });
+    setDot(idx);
+  }
+
+  function next(){ scrollTo(getIndex() + 1); }
+  function prev(){ scrollTo(getIndex() - 1); }
+
+  if (reviewsDotsWrap) {
+    reviewsDotsWrap.innerHTML = "";
+    slides.forEach((_, i) => {
+      const dot = document.createElement("button");
+      dot.className = "dot";
+      dot.setAttribute("aria-label", `Rezension ${i + 1}`);
+      dot.addEventListener("click", () => { pauseReviewsTemp(); scrollTo(i); });
+      reviewsDotsWrap.appendChild(dot);
+    });
+  }
+
+  reviewsPrevBtn?.addEventListener("click", () => { pauseReviewsTemp(); prev(); });
+  reviewsNextBtn?.addEventListener("click", () => { pauseReviewsTemp(); next(); });
+
+  let t;
+  reviews.addEventListener("scroll", () => {
+    clearTimeout(t);
+    t = setTimeout(() => setDot(getIndex()), 80);
+  });
+
+  reviews.addEventListener("mouseenter", () => reviewsPaused = true);
+  reviews.addEventListener("mouseleave", () => reviewsPaused = false);
+  reviews.addEventListener("touchstart", () => pauseReviewsTemp(), { passive: true });
+
+  setDot(0);
+  startReviewsAuto(next);
+}
