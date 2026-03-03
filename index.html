@@ -1,273 +1,196 @@
-<!doctype html>
-<html lang="de">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Westzipfelcamp – Camping in Waldfeucht</title>
-  <meta name="description" content="Westzipfelcamp in 52525 Waldfeucht – naturverbunden, freundlich und modern." />
+// Footer year
+const year = document.getElementById("year");
+if (year) year.textContent = new Date().getFullYear();
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;500;700;800&display=swap" rel="stylesheet">
+// Mobile nav
+const toggle = document.querySelector(".nav-toggle");
+const nav = document.querySelector(".nav");
 
-  <link rel="stylesheet" href="styles.css" />
-  <script defer src="script.js"></script>
-</head>
+if (toggle && nav) {
+  toggle.addEventListener("click", () => {
+    const isOpen = nav.classList.toggle("nav--open");
+    toggle.setAttribute("aria-expanded", String(isOpen));
+  });
 
-<body>
-  <a class="skip-link" href="#content">Zum Inhalt</a>
+  nav.querySelectorAll("a").forEach(a => {
+    a.addEventListener("click", () => {
+      nav.classList.remove("nav--open");
+      toggle.setAttribute("aria-expanded", "false");
+    });
+  });
+}
 
-  <header class="header">
-    <div class="container header__inner">
-      <div class="brand">
-        <div class="brand__mark" aria-hidden="true">🌿</div>
-        <div class="brand__text">
-          <div class="brand__name">Westzipfelcamp</div>
-          <div class="brand__sub">Schulstr. 61 • 52525 Waldfeucht</div>
-        </div>
-      </div>
+// Legal dialog placeholders
+const legalDialog = document.getElementById("legalDialog");
+const legalTitle = document.getElementById("legalTitle");
+const legalText = document.getElementById("legalText");
+const closeDialog = document.getElementById("closeDialog");
+const impressumLink = document.getElementById("impressumLink");
+const datenschutzLink = document.getElementById("datenschutzLink");
 
-      <button class="nav-toggle" aria-label="Menü öffnen" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
+function openLegal(title, text) {
+  if (!legalDialog) return;
+  legalTitle.textContent = title;
+  legalText.textContent = text;
+  legalDialog.showModal();
+}
 
-      <nav class="nav" aria-label="Hauptnavigation">
-        <a href="#camp">Westzipfelcamp</a>
-        <a href="#preise">Preise</a>
-        <a class="btn btn--small" href="#kontakt">Anfragen</a>
-      </nav>
-    </div>
-  </header>
+if (impressumLink) {
+  impressumLink.addEventListener("click", (e) => {
+    e.preventDefault();
+    openLegal(
+      "Impressum (Platzhalter)",
+      "Bitte ergänze hier dein Impressum (Betreiber, Adresse, Kontakt, ggf. USt-ID). Wenn du mir Betreibername/Adresse gibst, formuliere ich dir eine passende Vorlage."
+    );
+  });
+}
+if (datenschutzLink) {
+  datenschutzLink.addEventListener("click", (e) => {
+    e.preventDefault();
+    openLegal(
+      "Datenschutz (Platzhalter)",
+      "Bitte ergänze hier deine Datenschutzerklärung. Eingebettet ist eine OpenStreetMap-Karte. Wenn du Tools wie Analytics/YouTube nutzt, kann ich dir den Text passend erstellen."
+    );
+  });
+}
+if (closeDialog && legalDialog) {
+  closeDialog.addEventListener("click", () => legalDialog.close());
+}
 
-  <main id="content">
+// Inquiry form -> mailto
+const form = document.getElementById("inquiryForm");
+if (form) {
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
 
-    <!-- HERO mit echtem Bild -->
-    <section class="hero hero--photo" aria-label="Startbereich">
-      <div class="hero__bg" aria-hidden="true"></div>
-      <div class="hero__overlay" aria-hidden="true"></div>
+    const receiver = "info@westzipfelcamp.de";
 
-      <div class="container hero__inner">
-        <div class="pill">🌞 Natur • Ruhe • Wohlfühlen</div>
-        <h1>Dein fröhlicher Rückzugsort im Grünen.</h1>
-        <p>
-          Willkommen im <strong>Westzipfelcamp</strong> in <strong>Waldfeucht</strong>.
-          Ein kleiner, offener Platz mit viel Grün – für entspannte Nächte und echte Auszeit.
-        </p>
+    const data = new FormData(form);
+    const name = data.get("name") || "";
+    const email = data.get("email") || "";
+    const from = data.get("from") || "";
+    const to = data.get("to") || "";
+    const type = data.get("type") || "";
+    const message = data.get("message") || "";
 
-        <div class="hero__cta">
-          <a class="btn" href="#kontakt">Verfügbarkeit anfragen</a>
-        </div>
-      </div>
-    </section>
+    const subject = `Anfrage Westzipfelcamp (${from}–${to})`;
+    const body =
+`Hallo Westzipfelcamp-Team,
 
-    <!-- WESTZIPFELCAMP + GALERIE -->
-    <section id="camp" class="section">
-      <div class="container">
-        <div class="section__header">
-          <h2>Westzipfelcamp</h2>
-          <p class="lead">
-            Klein, ruhig und naturbezogen – hier geht’s ums Ankommen, Durchatmen und das gute Campinggefühl.
-          </p>
-        </div>
+ich möchte gerne anfragen:
 
-        <div class="grid-2">
-          <div class="card camp-text">
-            <p>
-              Bei uns campst du unkompliziert und angenehm: <strong>großzügige Stellflächen</strong> im Grünen, ein offenes Platzgefühl
-              und kurze Wege. Für den Alltag vor Ort stehen <strong>Sanitäreinrichtungen</strong> sowie <strong>Duschen</strong> bereit.
-              Wasser kannst du nach Verbrauch nutzen – praktisch zum Auffüllen oder fürs Abspülen.
-            </p>
-            <p>
-              Wer es besonders bequem mag, wählt das <strong>Komfort-Paket</strong> mit <strong>Strom</strong>.
-              Und an warmen Tagen gibt’s ein Extra: Ein <strong>Pool</strong> ist <strong>nach Absprache mit dem Eigentümer</strong> nutzbar.
-              So bleibt der Aufenthalt entspannt – genau so, wie Camping sein soll.
-            </p>
+Name: ${name}
+E-Mail: ${email}
+Anreise: ${from}
+Abreise: ${to}
+Camping-Paket: ${type}
 
-            <ul class="checklist" aria-label="Kurzüberblick Ausstattung">
-              <li>Sanitäreinrichtungen & Duschen</li>
-              <li>Wasser nach Verbrauch</li>
-              <li>Komfort-Paket inkl. Strom</li>
-              <li>Pool nach Absprache nutzbar</li>
-              <li>Ruhig, freundlich & naturbezogen</li>
-            </ul>
-          </div>
+Nachricht:
+${message}
 
-          <div class="card">
-            <div class="gallery-title">
-              <h3>Einblicke</h3>
-              <div class="gallery-controls">
-                <button class="gbtn" type="button" data-gallery-prev aria-label="Vorheriges Bild">‹</button>
-                <button class="gbtn" type="button" data-gallery-next aria-label="Nächstes Bild">›</button>
-              </div>
-            </div>
+Viele Grüße
+${name}`;
 
-            <div class="gallery" data-gallery aria-label="Bildergalerie">
-              <figure class="slide">
-                <img src="assets/1.jpg" alt="Westzipfelcamp – Stellplatz im Grünen" loading="lazy">
-                <figcaption>Stellplatz</figcaption>
-              </figure>
+    const mailto = `mailto:${encodeURIComponent(receiver)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.location.href = mailto;
+  });
+}
 
-              <figure class="slide">
-                <img src="assets/2.jpg" alt="Westzipfelcamp – Poolbereich" loading="lazy">
-                <figcaption>Pool (nach Absprache)</figcaption>
-              </figure>
+/* ===== Galerie: Auto + Swipe (1 Bild) ===== */
+const gallery = document.querySelector("[data-gallery]");
+const dotsWrap = document.querySelector("[data-gallery-dots]");
+const prevBtn = document.querySelector("[data-gallery-prev]");
+const nextBtn = document.querySelector("[data-gallery-next]");
 
-              <figure class="slide">
-                <img src="assets/3.jpg" alt="Westzipfelcamp – Sanitäreinrichtungen" loading="lazy">
-                <figcaption>Sanitäreinrichtungen</figcaption>
-              </figure>
+if (gallery) {
+  const slides = Array.from(gallery.querySelectorAll(".slide"));
+  let autoTimer = null;
+  let isPaused = false;
+  const INTERVAL_MS = 4500;
 
-              <figure class="slide">
-                <img src="assets/4.jpg" alt="Westzipfelcamp – Sanitäreinrichtungen" loading="lazy">
-                <figcaption>Sanitäreinrichtungen</figcaption>
-              </figure>
+  // Dots erstellen
+  if (dotsWrap) {
+    dotsWrap.innerHTML = "";
+    slides.forEach((_, i) => {
+      const b = document.createElement("button");
+      b.type = "button";
+      b.className = "dot";
+      b.setAttribute("aria-label", `Bild ${i + 1}`);
+      b.addEventListener("click", () => {
+        pauseAuto(true);
+        scrollToSlide(i);
+      });
+      dotsWrap.appendChild(b);
+    });
+  }
 
-              <figure class="slide">
-                <img src="assets/5.jpg" alt="Westzipfelcamp – Stellplatz mit viel Grünfläche" loading="lazy">
-                <figcaption>Stellplatz</figcaption>
-              </figure>
-            </div>
+  function getCurrentIndex() {
+    const w = gallery.clientWidth || 1;
+    return Math.round(gallery.scrollLeft / w);
+  }
 
-            <div class="dots" data-gallery-dots aria-label="Galerie-Navigation"></div>
-          </div>
-        </div>
-      </div>
-    </section>
+  function setActiveDot(i) {
+    if (!dotsWrap) return;
+    dotsWrap.querySelectorAll(".dot").forEach((d, idx) => {
+      d.classList.toggle("is-active", idx === i);
+    });
+  }
 
-    <!-- PREISE -->
-    <section id="preise" class="section section--soft">
-      <div class="container">
-        <div class="section__header">
-          <h2>Preise</h2>
-        </div>
+  function scrollToSlide(i) {
+    const clamped = Math.max(0, Math.min(slides.length - 1, i));
+    gallery.scrollTo({ left: clamped * gallery.clientWidth, behavior: "smooth" });
+    setActiveDot(clamped);
+  }
 
-        <div class="price-grid">
-          <div class="price price--highlight">
-            <div class="price__top">
-              <h3>Basic</h3>
-              <span class="price__tag">8€ / Nacht</span>
-            </div>
-            <ul>
-              <li>Stellfläche</li>
-              <li>Zugang zu Sanitäreinrichtungen</li>
-              <li>+ 0,50€ pro Nutzung der Dusche</li>
-              <li>+ 1€ pro 100L Wasser</li>
-            </ul>
-          </div>
+  function next() {
+    const idx = getCurrentIndex();
+    const nxt = (idx + 1) % slides.length;
+    scrollToSlide(nxt);
+  }
 
-          <div class="price">
-            <div class="price__top">
-              <h3>Komfort</h3>
-              <span class="price__tag">11€ / Nacht</span>
-            </div>
-            <ul>
-              <li>Stellfläche</li>
-              <li>Strom</li>
-              <li>Zugang zu Sanitäreinrichtungen</li>
-              <li>+ 0,50€ pro Nutzung der Dusche</li>
-              <li>+ 1€ pro 100L Wasser</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
+  function prev() {
+    const idx = getCurrentIndex();
+    const prv = (idx - 1 + slides.length) % slides.length;
+    scrollToSlide(prv);
+  }
 
-    <!-- KONTAKT -->
-    <section id="kontakt" class="section">
-      <div class="container">
-        <div class="section__header">
-          <h2>Kontakt & Anfrage</h2>
-          <p class="lead">Schreib uns kurz, wann du kommen möchtest – wir melden uns schnell zurück.</p>
-        </div>
+  prevBtn?.addEventListener("click", () => { pauseAuto(true); prev(); });
+  nextBtn?.addEventListener("click", () => { pauseAuto(true); next(); });
 
-        <div class="contact-grid">
-          <form class="form" id="inquiryForm">
-            <div class="form__row">
-              <label for="name">Name</label>
-              <input id="name" name="name" autocomplete="name" required placeholder="Vor- und Nachname" />
-            </div>
+  // Bei Scroll (Swipe/Trackpad) aktiven Dot nachziehen
+  let t;
+  gallery.addEventListener("scroll", () => {
+    window.clearTimeout(t);
+    t = window.setTimeout(() => setActiveDot(getCurrentIndex()), 80);
+  });
 
-            <div class="form__row">
-              <label for="email">E-Mail</label>
-              <input id="email" name="email" type="email" autocomplete="email" required placeholder="name@mail.de" />
-            </div>
+  // Auto-Play
+  function startAuto() {
+    stopAuto();
+    autoTimer = window.setInterval(() => {
+      if (!isPaused) next();
+    }, INTERVAL_MS);
+  }
+  function stopAuto() {
+    if (autoTimer) window.clearInterval(autoTimer);
+    autoTimer = null;
+  }
+  function pauseAuto(temp) {
+    isPaused = true;
+    if (temp) window.setTimeout(() => { isPaused = false; }, 8000);
+  }
 
-            <div class="form__row two">
-              <div>
-                <label for="from">Anreise</label>
-                <input id="from" name="from" type="date" required />
-              </div>
-              <div>
-                <label for="to">Abreise</label>
-                <input id="to" name="to" type="date" required />
-              </div>
-            </div>
+  // Pause bei Interaktion
+  gallery.addEventListener("mouseenter", () => isPaused = true);
+  gallery.addEventListener("mouseleave", () => isPaused = false);
+  gallery.addEventListener("touchstart", () => pauseAuto(true), { passive: true });
 
-            <div class="form__row">
-              <label for="type">Camping-Paket</label>
-              <select id="type" name="type">
-                <option>Basic</option>
-                <option>Komfort</option>
-              </select>
-            </div>
+  // Bei Resize ausrichten
+  window.addEventListener("resize", () => {
+    scrollToSlide(getCurrentIndex());
+  });
 
-            <div class="form__row">
-              <label for="message">Nachricht</label>
-              <textarea id="message" name="message" rows="5" placeholder="Anzahl Personen, Wünsche …"></textarea>
-            </div>
-
-            <button class="btn" type="submit">Anfrage per E-Mail vorbereiten</button>
-            <p class="fineprint">Der Button öffnet dein E-Mail-Programm mit einer fertigen Anfrage.</p>
-          </form>
-
-          <div class="contact-card">
-            <div class="contact-card__top">
-              <h3>Westzipfelcamp</h3>
-              <p class="muted">Schulstr. 61, 52525 Waldfeucht</p>
-            </div>
-
-            <div class="contact-lines">
-              <div><strong>E-Mail:</strong> <a href="mailto:info@westzipfelcamp.de">info@westzipfelcamp.de</a></div>
-              <div><strong>Telefon:</strong> <a href="tel:+491786065840">01786 065840</a></div>
-            </div>
-
-            <div class="map">
-              <iframe
-                title="Karte (OpenStreetMap)"
-                src="https://www.openstreetmap.org/export/embed.html?bbox=5.995833%2C51.041667%2C6.015833%2C51.061667&amp;layer=mapnik&amp;marker=51.051667%2C6.005833"
-                loading="lazy">
-              </iframe>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer class="footer">
-      <div class="container footer__inner">
-        <div>
-          <div class="footer__brand">Westzipfelcamp</div>
-          <div class="footer__meta">© <span id="year"></span> • Schulstr. 61, 52525 Waldfeucht</div>
-        </div>
-
-        <div class="footer__links">
-          <a href="#" id="impressumLink">Impressum</a>
-          <a href="#" id="datenschutzLink">Datenschutz</a>
-        </div>
-      </div>
-
-      <dialog id="legalDialog" class="dialog">
-        <div class="dialog__inner">
-          <h3 id="legalTitle">Hinweis</h3>
-          <p id="legalText" class="muted">
-            Bitte ergänze hier dein Impressum/Datenschutz. Wenn du mir Betreibername/Adresse gibst, formuliere ich dir eine passende Vorlage.
-          </p>
-          <button class="btn btn--small" id="closeDialog">Schließen</button>
-        </div>
-      </dialog>
-    </footer>
-
-  </main>
-</body>
-</html>
+  // Initial
+  setActiveDot(0);
+  startAuto();
+}
