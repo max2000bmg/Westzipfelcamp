@@ -1,11 +1,425 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="de">
 <head>
-    <title>Meine Webseite</title>
-    <meta charset="UTF-8">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Westzipfelcamp – Camping in Waldfeucht-Bocket</title>
+  <meta name="description" content="Westzipfelcamp in 52525 Waldfeucht-Bocket – naturverbunden, freundlich und modern. Stellplätze, Ruhe, frische Luft und viel Grün." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;500;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css" />
+  <script defer src="script.js"></script>
 </head>
+
 <body>
-    <h1>Willkommen auf meiner Webseite</h1>
-    <p>Meine Seite läuft über GitHub Pages 🎉</p>
+  <a class="skip-link" href="#content">Zum Inhalt</a>
+
+  <header class="header">
+    <div class="container header__inner">
+      <div class="brand">
+        <div class="brand__mark" aria-hidden="true">🌿</div>
+        <div class="brand__text">
+          <div class="brand__name">Westzipfelcamp</div>
+          <div class="brand__sub">Waldfeucht – Bocket</div>
+        </div>
+      </div>
+
+      <button class="nav-toggle" aria-label="Menü öffnen" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="nav" aria-label="Hauptnavigation">
+        <a href="#camp">Campingplatz</a>
+        <a href="#ausstattung">Ausstattung</a>
+        <a href="#preise">Preise</a>
+        <a href="#umgebung">Umgebung</a>
+        <a class="btn btn--small" href="#kontakt">Anfragen</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="content">
+    <!-- HERO -->
+    <section class="hero" aria-label="Startbereich">
+      <div class="container hero__grid">
+        <div class="hero__copy">
+          <div class="pill">🌞 Natur • Ruhe • Wohlfühlen</div>
+          <h1>Dein fröhlicher Rückzugsort im Grünen.</h1>
+          <p>
+            Willkommen im <strong>Westzipfelcamp</strong> in <strong>52525 Waldfeucht – Bocket</strong>.
+            Modern, offen und naturbezogen – für Campingfans, Wochenend-Auszeiten und entspannte Ferientage.
+          </p>
+
+          <div class="hero__cta">
+            <a class="btn" href="#kontakt">Verfügbarkeit anfragen</a>
+            <a class="btn btn--ghost" href="#camp">Mehr erfahren</a>
+          </div>
+
+          <div class="hero__badges" aria-label="Highlights">
+            <div class="badge">
+              <div class="badge__icon" aria-hidden="true">⛺</div>
+              <div>
+                <div class="badge__title">Stellplätze</div>
+                <div class="badge__text">für Zelt, Van & Wohnmobil</div>
+              </div>
+            </div>
+            <div class="badge">
+              <div class="badge__icon" aria-hidden="true">🌳</div>
+              <div>
+                <div class="badge__title">Natur nah</div>
+                <div class="badge__text">grün & ruhig gelegen</div>
+              </div>
+            </div>
+            <div class="badge">
+              <div class="badge__icon" aria-hidden="true">✨</div>
+              <div>
+                <div class="badge__title">Modern</div>
+                <div class="badge__text">klar, freundlich, gepflegt</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero__media" role="img" aria-label="Natur-Illustration">
+          <div class="hero-card">
+            <div class="hero-card__top">
+              <div class="dot dot--1"></div>
+              <div class="dot dot--2"></div>
+              <div class="dot dot--3"></div>
+            </div>
+            <div class="hero-card__body">
+              <div class="scene">
+                <div class="sun"></div>
+                <div class="hill hill--a"></div>
+                <div class="hill hill--b"></div>
+                <div class="trees">
+                  <span class="tree"></span><span class="tree"></span><span class="tree"></span><span class="tree"></span>
+                </div>
+                <div class="tent" aria-hidden="true"></div>
+                <div class="sparkles" aria-hidden="true">
+                  <span></span><span></span><span></span>
+                </div>
+              </div>
+
+              <div class="hero-card__stats">
+                <div class="stat">
+                  <div class="stat__num">✓</div>
+                  <div class="stat__label">Schnelle Anfrage</div>
+                </div>
+                <div class="stat">
+                  <div class="stat__num">★</div>
+                  <div class="stat__label">Familienfreundlich</div>
+                </div>
+                <div class="stat">
+                  <div class="stat__num">☘</div>
+                  <div class="stat__label">Naturgefühl</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="floating floating--a">🍃 Frische Luft</div>
+          <div class="floating floating--b">🚲 Ausflüge</div>
+          <div class="floating floating--c">🔥 Lagerfeeling</div>
+        </div>
+      </div>
+
+      <div class="wave" aria-hidden="true"></div>
+    </section>
+
+    <!-- CAMP -->
+    <section id="camp" class="section">
+      <div class="container">
+        <div class="section__header">
+          <h2>Westzipfelcamp</h2>
+          <p>
+            Ein kleiner Campingplatz mit entspanntem Charakter – ideal, wenn du Natur magst und trotzdem ein frisches, modernes Ambiente suchst.
+          </p>
+        </div>
+
+        <div class="cards">
+          <article class="card">
+            <div class="card__icon" aria-hidden="true">🌿</div>
+            <h3>Offen & freundlich</h3>
+            <p>Eine klare Gestaltung, viel Grün, und ein Platz, an dem man leicht ankommt.</p>
+          </article>
+
+          <article class="card">
+            <div class="card__icon" aria-hidden="true">🛶</div>
+            <h3>Für kurze & lange Aufenthalte</h3>
+            <p>Wochenendtrip oder Ferien – du entscheidest. Stell dir deinen Aufenthalt ganz entspannt zusammen.</p>
+          </article>
+
+          <article class="card">
+            <div class="card__icon" aria-hidden="true">🌞</div>
+            <h3>Ruhige Auszeit</h3>
+            <p>Perfekt zum Lesen, Spazieren, Radfahren oder einfach: nichts tun und genießen.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- AUSSTATTUNG -->
+    <section id="ausstattung" class="section section--soft">
+      <div class="container">
+        <div class="section__header">
+          <h2>Ausstattung</h2>
+          <p>Hier trägst du später einfach ein, was bei euch genau verfügbar ist. Ich habe Platzhalter gesetzt.</p>
+        </div>
+
+        <div class="grid-2">
+          <div class="feature-list">
+            <div class="feature">
+              <div class="feature__icon" aria-hidden="true">🚿</div>
+              <div>
+                <div class="feature__title">Sanitär & Duschen</div>
+                <div class="feature__text">Sauber & gepflegt (Details nach Bedarf ergänzen).</div>
+              </div>
+            </div>
+            <div class="feature">
+              <div class="feature__icon" aria-hidden="true">⚡</div>
+              <div>
+                <div class="feature__title">Strom am Stellplatz</div>
+                <div class="feature__text">Optional / je nach Stellplatz (bitte anpassen).</div>
+              </div>
+            </div>
+            <div class="feature">
+              <div class="feature__icon" aria-hidden="true">🧼</div>
+              <div>
+                <div class="feature__title">Spülbereich</div>
+                <div class="feature__text">Praktisch nach dem Kochen – schnell wieder bereit fürs Lagerfeeling.</div>
+              </div>
+            </div>
+            <div class="feature">
+              <div class="feature__icon" aria-hidden="true">🐶</div>
+              <div>
+                <div class="feature__title">Hunde willkommen</div>
+                <div class="feature__text">Wenn erlaubt: super! Wenn nicht: hier entfernen.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="callout">
+            <h3>So wirkt die Seite lebendig</h3>
+            <p>
+              Füge 3–6 echte Fotos hinzu: Ein Blick ins Grüne, Stellplätze, Eingangsbereich, Sonnenuntergang, Details (Feuerstelle, Sitzplatz).
+            </p>
+            <ul class="check">
+              <li>Helles Foto als Titelbild (Hero)</li>
+              <li>2–3 Bilder „Platz & Natur“</li>
+              <li>1–2 Bilder „Ausstattung“</li>
+            </ul>
+            <a class="btn btn--ghost" href="#kontakt">Ich will anfragen</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PREISE -->
+    <section id="preise" class="section">
+      <div class="container">
+        <div class="section__header">
+          <h2>Preise</h2>
+          <p>Trage hier deine echten Preise ein. Bis dahin stehen Beispielwerte als Platzhalter.</p>
+        </div>
+
+        <div class="price-grid">
+          <div class="price">
+            <div class="price__top">
+              <h3>Basic</h3>
+              <div class="price__tag">für Zelt</div>
+            </div>
+            <div class="price__num">ab 12€</div>
+            <div class="price__note">pro Nacht (Beispiel)</div>
+            <ul>
+              <li>Stellfläche</li>
+              <li>ruhige Lage</li>
+              <li>Zugang Sanitär</li>
+            </ul>
+            <a class="btn btn--small" href="#kontakt">Anfragen</a>
+          </div>
+
+          <div class="price price--highlight">
+            <div class="price__top">
+              <h3>Komfort</h3>
+              <div class="price__tag">für Van / Wohnmobil</div>
+            </div>
+            <div class="price__num">ab 18€</div>
+            <div class="price__note">pro Nacht (Beispiel)</div>
+            <ul>
+              <li>Stellplatz</li>
+              <li>optional Strom</li>
+              <li>kurze Wege</li>
+            </ul>
+            <a class="btn btn--small" href="#kontakt">Anfragen</a>
+          </div>
+
+          <div class="price">
+            <div class="price__top">
+              <h3>Saison</h3>
+              <div class="price__tag">länger bleiben</div>
+            </div>
+            <div class="price__num">auf Anfrage</div>
+            <div class="price__note">Monat / Saison</div>
+            <ul>
+              <li>faire Konditionen</li>
+              <li>ruhige Basis</li>
+              <li>individuell</li>
+            </ul>
+            <a class="btn btn--small" href="#kontakt">Kontakt</a>
+          </div>
+        </div>
+
+        <p class="fineprint">
+          Hinweis: Beispielpreise dienen nur als Platzhalter. Bitte durch echte Werte ersetzen.
+        </p>
+      </div>
+    </section>
+
+    <!-- UMGEBUNG -->
+    <section id="umgebung" class="section section--soft">
+      <div class="container">
+        <div class="section__header">
+          <h2>Umgebung</h2>
+          <p>Waldfeucht-Bocket liegt am westlichsten Zipfel Deutschlands – ideal für kleine Ausflüge in die Natur.</p>
+        </div>
+
+        <div class="cards cards--wide">
+          <article class="card card--wide">
+            <h3>Spaziergänge & Natur</h3>
+            <p>Perfekt für entspannte Runden am Morgen oder den Sonnenuntergang am Abend.</p>
+          </article>
+          <article class="card card--wide">
+            <h3>Radfahren</h3>
+            <p>Flach bis leicht wellig – super für gemütliche Touren. (Routen kannst du später ergänzen.)</p>
+          </article>
+          <article class="card card--wide">
+            <h3>Region entdecken</h3>
+            <p>Grenznah gelegen – Tagesausflüge bieten sich an. (Tipps später eintragen.)</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- KONTAKT -->
+    <section id="kontakt" class="section">
+      <div class="container">
+        <div class="section__header">
+          <h2>Kontakt & Anfrage</h2>
+          <p>Schreib uns kurz, wann du kommen möchtest – wir melden uns schnell zurück.</p>
+        </div>
+
+        <div class="grid-2">
+          <form class="form" id="inquiryForm">
+            <div class="form__row">
+              <label for="name">Name</label>
+              <input id="name" name="name" autocomplete="name" required placeholder="Vor- und Nachname" />
+            </div>
+
+            <div class="form__row">
+              <label for="email">E-Mail</label>
+              <input id="email" name="email" type="email" autocomplete="email" required placeholder="name@mail.de" />
+            </div>
+
+            <div class="form__row form__row--two">
+              <div>
+                <label for="from">Anreise</label>
+                <input id="from" name="from" type="date" required />
+              </div>
+              <div>
+                <label for="to">Abreise</label>
+                <input id="to" name="to" type="date" required />
+              </div>
+            </div>
+
+            <div class="form__row">
+              <label for="type">Camping-Art</label>
+              <select id="type" name="type">
+                <option>Zelt</option>
+                <option>Van</option>
+                <option>Wohnmobil</option>
+                <option>Sonstiges</option>
+              </select>
+            </div>
+
+            <div class="form__row">
+              <label for="message">Nachricht</label>
+              <textarea id="message" name="message" rows="5" placeholder="Anzahl Personen, Strombedarf, Hund, Wünsche …"></textarea>
+            </div>
+
+            <button class="btn" type="submit">Anfrage per E-Mail vorbereiten</button>
+            <p class="fineprint">
+              Diese Seite versendet keine E-Mails automatisch. Der Button öffnet dein E-Mail-Programm mit einer fertigen Anfrage.
+            </p>
+          </form>
+
+          <div class="contact-card">
+            <div class="contact-card__top">
+              <h3>Westzipfelcamp</h3>
+              <p class="muted">52525 Waldfeucht – Bocket</p>
+            </div>
+
+            <div class="contact-card__details">
+              <div class="kv">
+                <div class="kv__k">Adresse</div>
+                <div class="kv__v">Waldfeucht – Bocket<br><span class="muted">(genaue Straße hier eintragen)</span></div>
+              </div>
+              <div class="kv">
+                <div class="kv__k">E-Mail</div>
+                <div class="kv__v"><span class="muted">(deine E-Mail hier eintragen)</span></div>
+              </div>
+              <div class="kv">
+                <div class="kv__k">Telefon</div>
+                <div class="kv__v"><span class="muted">(optional)</span></div>
+              </div>
+            </div>
+
+            <div class="map">
+              <!-- OpenStreetMap Embed (ohne API-Key). Du kannst später die Koordinaten/Box anpassen. -->
+              <iframe
+                title="Karte (OpenStreetMap)"
+                src="https://www.openstreetmap.org/export/embed.html?bbox=5.95%2C51.05%2C6.25%2C51.25&amp;layer=mapnik"
+                loading="lazy">
+              </iframe>
+              <div class="map__note">
+                Tipp: Wenn du die genaue Adresse kennst, passe ich dir den Kartenausschnitt exakt an.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="container footer__inner">
+        <div>
+          <div class="footer__brand">Westzipfelcamp</div>
+          <div class="footer__meta">© <span id="year"></span> • Waldfeucht – Bocket</div>
+        </div>
+
+        <div class="footer__links">
+          <a href="#camp">Campingplatz</a>
+          <a href="#kontakt">Kontakt</a>
+          <a href="#" id="impressumLink">Impressum</a>
+          <a href="#" id="datenschutzLink">Datenschutz</a>
+        </div>
+      </div>
+
+      <!-- Mini-Modal für Platzhalter-Text -->
+      <dialog id="legalDialog" class="dialog">
+        <div class="dialog__inner">
+          <h3 id="legalTitle">Hinweis</h3>
+          <p id="legalText" class="muted">
+            Bitte ergänze hier dein Impressum/Datenschutz. (Ich kann dir das auch als Vorlage erstellen, wenn du mir Betreibername/Adresse gibst.)
+          </p>
+          <button class="btn btn--small" id="closeDialog">Schließen</button>
+        </div>
+      </dialog>
+    </footer>
+  </main>
 </body>
 </html>
