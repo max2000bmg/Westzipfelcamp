@@ -70,7 +70,6 @@
           </p>
         </div>
 
-        <!-- Wichtig: nicht mehr 2-spaltig, sondern untereinander -->
         <div class="stack">
           <div class="card camp-text">
             <p>
@@ -83,17 +82,9 @@
               Und an warmen Tagen gibt’s ein Extra: Ein <strong>Pool</strong> ist <strong>nach Absprache mit dem Eigentümer</strong> nutzbar.
               So bleibt der Aufenthalt entspannt – genau so, wie Camping sein soll.
             </p>
-
-            <ul class="checklist" aria-label="Kurzüberblick Ausstattung">
-              <li>Sanitäreinrichtungen & Duschen</li>
-              <li>Wasser nach Verbrauch</li>
-              <li>Komfort-Paket inkl. Strom</li>
-              <li>Pool nach Absprache nutzbar</li>
-              <li>Ruhig, freundlich & naturbezogen</li>
-            </ul>
           </div>
 
-          <div class="card">
+          <div class="card card--gallery">
             <div class="gallery-title">
               <h3>Einblicke</h3>
               <div class="gallery-controls">
@@ -104,27 +95,37 @@
 
             <div class="gallery" data-gallery aria-label="Bildergalerie">
               <figure class="slide">
-                <img src="assets/1.jpg" alt="Westzipfelcamp – Stellplatz im Grünen" loading="lazy">
+                <button class="slide__btn" type="button" data-lightbox-open aria-label="Bild im Vollbild öffnen">
+                  <img src="assets/1.jpg" alt="Westzipfelcamp – Stellplatz im Grünen" loading="lazy">
+                </button>
                 <figcaption>Stellplatz</figcaption>
               </figure>
 
               <figure class="slide">
-                <img src="assets/2.jpg" alt="Westzipfelcamp – Poolbereich" loading="lazy">
+                <button class="slide__btn" type="button" data-lightbox-open aria-label="Bild im Vollbild öffnen">
+                  <img src="assets/2.jpg" alt="Westzipfelcamp – Poolbereich" loading="lazy">
+                </button>
                 <figcaption>Pool (nach Absprache)</figcaption>
               </figure>
 
               <figure class="slide">
-                <img src="assets/3.jpg" alt="Westzipfelcamp – Sanitäreinrichtungen" loading="lazy">
+                <button class="slide__btn" type="button" data-lightbox-open aria-label="Bild im Vollbild öffnen">
+                  <img src="assets/3.jpg" alt="Westzipfelcamp – Sanitäreinrichtungen" loading="lazy">
+                </button>
                 <figcaption>Sanitäreinrichtungen</figcaption>
               </figure>
 
               <figure class="slide">
-                <img src="assets/4.jpg" alt="Westzipfelcamp – Sanitäreinrichtungen" loading="lazy">
+                <button class="slide__btn" type="button" data-lightbox-open aria-label="Bild im Vollbild öffnen">
+                  <img src="assets/4.jpg" alt="Westzipfelcamp – Sanitäreinrichtungen" loading="lazy">
+                </button>
                 <figcaption>Sanitäreinrichtungen</figcaption>
               </figure>
 
               <figure class="slide">
-                <img src="assets/5.jpg" alt="Westzipfelcamp – Stellplatz mit viel Grünfläche" loading="lazy">
+                <button class="slide__btn" type="button" data-lightbox-open aria-label="Bild im Vollbild öffnen">
+                  <img src="assets/5.jpg" alt="Westzipfelcamp – Stellplatz mit viel Grünfläche" loading="lazy">
+                </button>
                 <figcaption>Stellplatz</figcaption>
               </figure>
             </div>
@@ -270,5 +271,18 @@
     </footer>
 
   </main>
+
+  <!-- LIGHTBOX -->
+  <dialog id="lightbox" class="lightbox" aria-label="Bild in Vollbild">
+    <button class="lightbox__close" type="button" data-lightbox-close aria-label="Schließen">✕</button>
+    <button class="lightbox__nav lightbox__nav--prev" type="button" data-lightbox-prev aria-label="Vorheriges Bild">‹</button>
+    <button class="lightbox__nav lightbox__nav--next" type="button" data-lightbox-next aria-label="Nächstes Bild">›</button>
+
+    <figure class="lightbox__figure">
+      <img id="lightboxImg" alt="" />
+      <figcaption id="lightboxCap"></figcaption>
+    </figure>
+  </dialog>
+
 </body>
 </html>
