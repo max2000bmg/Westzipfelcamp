@@ -108,7 +108,6 @@ if (gallery) {
   let isPaused = false;
   const INTERVAL_MS = 4500;
 
-  // Dots erstellen
   if (dotsWrap) {
     dotsWrap.innerHTML = "";
     slides.forEach((_, i) => {
@@ -157,14 +156,12 @@ if (gallery) {
   prevBtn?.addEventListener("click", () => { pauseAuto(true); prev(); });
   nextBtn?.addEventListener("click", () => { pauseAuto(true); next(); });
 
-  // Bei Scroll (Swipe/Trackpad) aktiven Dot nachziehen
   let t;
   gallery.addEventListener("scroll", () => {
     window.clearTimeout(t);
     t = window.setTimeout(() => setActiveDot(getCurrentIndex()), 80);
   });
 
-  // Auto-Play
   function startAuto() {
     stopAuto();
     autoTimer = window.setInterval(() => {
@@ -180,17 +177,14 @@ if (gallery) {
     if (temp) window.setTimeout(() => { isPaused = false; }, 8000);
   }
 
-  // Pause bei Interaktion
   gallery.addEventListener("mouseenter", () => isPaused = true);
   gallery.addEventListener("mouseleave", () => isPaused = false);
   gallery.addEventListener("touchstart", () => pauseAuto(true), { passive: true });
 
-  // Bei Resize ausrichten
   window.addEventListener("resize", () => {
     scrollToSlide(getCurrentIndex());
   });
 
-  // Initial
   setActiveDot(0);
   startAuto();
 }
