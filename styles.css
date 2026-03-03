@@ -1,139 +1,364 @@
-body{
-margin:0;
-font-family:Manrope,sans-serif;
-background:#f6fbf7;
-color:#111;
-}
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Westzipfelcamp – Camping in Waldfeucht</title>
+  <meta name="description" content="Westzipfelcamp in 52525 Waldfeucht – naturverbunden, freundlich und modern." />
 
-.container{max-width:1100px;margin:auto;padding:20px}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;500;700;800&display=swap" rel="stylesheet">
 
-.header{background:#fff;position:sticky;top:0;border-bottom:1px solid #eee}
-.header__inner{display:flex;justify-content:space-between;align-items:center}
+  <link rel="stylesheet" href="styles.css" />
+  <script defer src="script.js"></script>
+</head>
 
-.nav a{margin-left:15px;text-decoration:none;font-weight:700}
+<body>
+  <a class="skip-link" href="#content">Zum Inhalt</a>
 
-.btn{
-background:#16a34a;
-color:#fff;
-padding:10px 15px;
-border-radius:12px;
-text-decoration:none;
-border:none;
-cursor:pointer;
-}
+  <header class="header">
+    <div class="container header__inner">
+      <div class="brand">
+        <div class="brand__mark" aria-hidden="true">🌿</div>
+        <div class="brand__text">
+          <div class="brand__name">Westzipfelcamp</div>
+          <div class="brand__sub">Schulstr. 61 • 52525 Waldfeucht</div>
+        </div>
+      </div>
 
-.btn.whatsapp{background:#25D366}
+      <button class="nav-toggle" aria-label="Menü öffnen" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
 
-.hero{
-background:url("assets/1.jpg") center/cover no-repeat;
-height:450px;
-display:flex;
-align-items:center;
-color:#fff;
-position:relative;
-}
+      <nav class="nav" aria-label="Hauptnavigation">
+        <a href="#camp">Westzipfelcamp</a>
+        <a href="#preise">Preise</a>
+        <a class="btn btn--small" href="#kontakt">Anfragen</a>
+      </nav>
+    </div>
+  </header>
 
-.hero__overlay{
-position:absolute;
-inset:0;
-background:rgba(0,0,0,.5);
-}
+  <main id="content">
 
-.hero__inner{position:relative}
+    <!-- HERO -->
+    <section class="hero hero--photo" aria-label="Startbereich">
+      <div class="hero__bg" aria-hidden="true"></div>
+      <div class="hero__overlay" aria-hidden="true"></div>
 
-.section{padding:60px 0}
-.soft{background:#eef6f0}
+      <div class="container hero__inner">
+        <div class="pill">🌞 Natur • Ruhe • Wohlfühlen</div>
+        <h1>Dein fröhlicher Rückzugsort im Grünen.</h1>
+        <p>
+          Willkommen im <strong>Westzipfelcamp</strong> in <strong>Bocket</strong>.
+          Ein kleiner, offener Platz mit viel Grün – für entspannte Nächte und echte Auszeit.
+        </p>
 
-.card{
-background:#fff;
-padding:20px;
-border-radius:20px;
-box-shadow:0 10px 30px rgba(0,0,0,.08);
-margin-top:20px;
-}
+        <div class="hero__cta">
+          <a class="btn" href="#kontakt">Verfügbarkeit anfragen</a>
+        </div>
+      </div>
+    </section>
 
-.gallery{
-display:flex;
-overflow:hidden;
-scroll-behavior:smooth;
-}
+    <!-- WESTZIPFELCAMP -->
+    <section id="camp" class="section">
+      <div class="container">
+        <div class="section__header">
+          <h2>Westzipfelcamp</h2>
+          <p class="lead"></p>
+        </div>
 
-.gallery img{
-min-width:100%;
-height:350px;
-object-fit:cover;
-}
+        <div class="stack">
+          <div class="card camp-text">
+            <p>
+              Klein, ruhig und naturbezogen – hier geht’s ums Ankommen, Durchatmen und das gute Campinggefühl.
+              Bei uns campst du unkompliziert und angenehm: <strong>großzügige Stellflächen</strong> im Grünen, ein offenes Platzgefühl
+              und kurze Wege. Für den Alltag vor Ort stehen <strong>Sanitäreinrichtungen</strong> sowie <strong>Duschen</strong> bereit.
+              Wasser kannst du nach Verbrauch nutzen – praktisch zum Auffüllen oder fürs Abspülen.
+            </p>
+            <p>
+              Wer es besonders bequem mag, wählt das <strong>Komfort-Paket</strong> mit <strong>Strom</strong>.
+              Und an warmen Tagen gibt’s ein Extra: Ein <strong>Pool</strong> ist <strong>nach Absprache mit dem Eigentümer</strong> nutzbar.
+              So bleibt der Aufenthalt entspannt – genau so, wie Camping sein soll.
+            </p>
+          </div>
 
-.reviews{
-display:flex;
-overflow:hidden;
-scroll-behavior:smooth;
-margin-top:15px;
-}
+          <div class="card card--gallery">
+            <div class="gallery-title">
+              <h3>Einblicke</h3>
+              <div class="gallery-controls">
+                <button class="gbtn" type="button" data-gallery-prev aria-label="Vorheriges Bild">‹</button>
+                <button class="gbtn" type="button" data-gallery-next aria-label="Nächstes Bild">›</button>
+              </div>
+            </div>
 
-.review{
-min-width:100%;
-font-weight:700;
-color:#555;
-}
+            <div class="gallery" data-gallery aria-label="Bildergalerie">
+              <figure class="slide">
+                <button class="slide__btn" type="button" data-lightbox-open aria-label="Bild im Vollbild öffnen">
+                  <img src="assets/1.jpg" alt="Westzipfelcamp – Stellplatz im Grünen" loading="lazy">
+                </button>
+                <figcaption>Stellplatz</figcaption>
+              </figure>
 
-.platform-logos{
-display:flex;
-gap:15px;
-margin-top:20px;
-flex-wrap:wrap;
-}
+              <figure class="slide">
+                <button class="slide__btn" type="button" data-lightbox-open aria-label="Bild im Vollbild öffnen">
+                  <img src="assets/2.jpg" alt="Westzipfelcamp – Poolbereich" loading="lazy">
+                </button>
+                <figcaption>Pool (nach Absprache)</figcaption>
+              </figure>
 
-.platform-btn{
-background:#fff;
-border:1px solid #ddd;
-border-radius:14px;
-padding:12px 18px;
-font-weight:800;
-text-decoration:none;
-color:#111;
-box-shadow:0 8px 20px rgba(0,0,0,.06);
-transition:.2s;
-}
+              <figure class="slide">
+                <button class="slide__btn" type="button" data-lightbox-open aria-label="Bild im Vollbild öffnen">
+                  <img src="assets/3.jpg" alt="Westzipfelcamp – Sanitäreinrichtungen" loading="lazy">
+                </button>
+                <figcaption>Sanitäreinrichtungen</figcaption>
+              </figure>
 
-.platform-btn:hover{
-transform:translateY(-2px);
-box-shadow:0 12px 25px rgba(0,0,0,.1);
-}
+              <figure class="slide">
+                <button class="slide__btn" type="button" data-lightbox-open aria-label="Bild im Vollbild öffnen">
+                  <img src="assets/4.jpg" alt="Westzipfelcamp – Sanitäreinrichtungen" loading="lazy">
+                </button>
+                <figcaption>Sanitäreinrichtungen</figcaption>
+              </figure>
 
-.price-grid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:20px;
-}
+              <figure class="slide">
+                <button class="slide__btn" type="button" data-lightbox-open aria-label="Bild im Vollbild öffnen">
+                  <img src="assets/5.jpg" alt="Westzipfelcamp – Stellplatz mit viel Grünfläche" loading="lazy">
+                </button>
+                <figcaption>Stellplatz</figcaption>
+              </figure>
+            </div>
 
-.price{
-background:#fff;
-padding:20px;
-border-radius:20px;
-box-shadow:0 10px 30px rgba(0,0,0,.08);
-text-align:center;
-}
+            <div class="dots" data-gallery-dots aria-label="Galerie-Navigation"></div>
+          </div>
 
-form input,select,textarea{
-display:block;
-width:100%;
-margin-bottom:12px;
-padding:10px;
-border-radius:10px;
-border:1px solid #ccc;
-}
+          <!-- Rezensionen (NEU) -->
+          <div class="card card--reviews">
+            <div class="reviews-title">
+              <div class="reviews-title__left">
+                <h3>Rezensionen</h3>
+                <p class="muted reviews-sub">
+                  Auszüge aus 5-Sterne-Bewertungen (manuell gepflegt) – weitere Bewertungen auf den Plattformen.
+                </p>
+              </div>
 
-.form-buttons{display:flex;gap:10px}
+              <div class="reviews-controls">
+                <button class="gbtn" type="button" data-reviews-prev aria-label="Vorherige Rezension">‹</button>
+                <button class="gbtn" type="button" data-reviews-next aria-label="Nächste Rezension">›</button>
+              </div>
+            </div>
 
-.footer{
-text-align:center;
-padding:30px;
-background:#fff;
-border-top:1px solid #eee;
-margin-top:50px;
-}
+            <div class="reviews" data-reviews aria-label="Rezensionen-Slider">
+              <article class="review-slide">
+                <div class="stars" aria-label="5 von 5 Sternen">★★★★★</div>
+                <p class="review-text">„Klein & persönlich, sehr freundlich. Alles sehr sauber – wer Ruhe sucht, ist hier richtig.“</p>
+                <div class="review-meta">5-Sterne • Auszug</div>
+              </article>
 
-@media(max-width:800px){
-.price-grid{grid-template-columns:1fr}
-}
+              <article class="review-slide">
+                <div class="stars" aria-label="5 von 5 Sternen">★★★★★</div>
+                <p class="review-text">„Absolut ruhig, super sauber und an alles gedacht. Klare Empfehlung.“</p>
+                <div class="review-meta">5-Sterne • Auszug</div>
+              </article>
+
+              <article class="review-slide">
+                <div class="stars" aria-label="5 von 5 Sternen">★★★★★</div>
+                <p class="review-text">„Wunderschöner Platz – ideal zum Abschalten. Sehr nette Betreiber.“</p>
+                <div class="review-meta">5-Sterne • Auszug</div>
+              </article>
+
+              <article class="review-slide">
+                <div class="stars" aria-label="5 von 5 Sternen">★★★★★</div>
+                <p class="review-text">„Rundum stimmig, entspannte Nacht und freundlicher Empfang.“</p>
+                <div class="review-meta">5-Sterne • Auszug</div>
+              </article>
+            </div>
+
+            <div class="dots" data-reviews-dots aria-label="Rezensionen-Navigation"></div>
+
+            <!-- Logo Buttons (NEU) -->
+            <div class="platform-logos" aria-label="Bewertungsplattformen">
+              <a class="platform-btn" href="https://park4night.com/de/place/508338" target="_blank" rel="noopener"
+                 aria-label="Westzipfelcamp auf park4night ansehen">
+                <img class="platform-logo" src="assets/logos/park4night.png" alt="park4night">
+              </a>
+
+              <a class="platform-btn" href="https://www.stellplatzfuehrer.de/plaetze/listen/alle/34854-westzipfelcamp"
+                 target="_blank" rel="noopener" aria-label="Westzipfelcamp auf stellplatzfuehrer.de ansehen">
+                <img class="platform-logo" src="assets/logos/stellplatzfuehrer.png" alt="Stellplatzführer">
+              </a>
+
+              <a class="platform-btn" href="https://www.promobil.de/stellplatz/westzipfelcamp-66aaad1c34c3800008304183.html"
+                 target="_blank" rel="noopener" aria-label="Westzipfelcamp auf promobil.de ansehen">
+                <img class="platform-logo" src="assets/logos/promobil.png" alt="promobil">
+              </a>
+
+              <a class="platform-btn" href="https://www.campercontact.com/de/deutschland/nordrhein-westfalen/waldfeucht/159146/westzipfelcamp"
+                 target="_blank" rel="noopener" aria-label="Westzipfelcamp auf Campercontact ansehen">
+                <img class="platform-logo" src="assets/logos/campercontact.png" alt="Campercontact">
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- PREISE -->
+    <section id="preise" class="section section--soft">
+      <div class="container">
+        <div class="section__header">
+          <h2>Preise</h2>
+        </div>
+
+        <div class="price-grid">
+          <div class="price price--highlight">
+            <div class="price__top">
+              <h3>Basic</h3>
+              <span class="price__tag">8€ / Nacht</span>
+            </div>
+            <ul>
+              <li>Stellfläche</li>
+              <li>Zugang zu Sanitäreinrichtungen</li>
+              <li>+ 0,50€ pro Nutzung der Dusche</li>
+              <li>+ 1€ pro 100L Wasser</li>
+            </ul>
+          </div>
+
+          <div class="price">
+            <div class="price__top">
+              <h3>Komfort</h3>
+              <span class="price__tag">11€ / Nacht</span>
+            </div>
+            <ul>
+              <li>Stellfläche</li>
+              <li>Strom</li>
+              <li>Zugang zu Sanitäreinrichtungen</li>
+              <li>+ 0,50€ pro Nutzung der Dusche</li>
+              <li>+ 1€ pro 100L Wasser</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- KONTAKT -->
+    <section id="kontakt" class="section">
+      <div class="container">
+        <div class="section__header">
+          <h2>Kontakt & Anfrage</h2>
+          <p class="lead">Daten eintragen und dann per E-Mail oder WhatsApp senden.</p>
+        </div>
+
+        <div class="contact-grid">
+          <form class="form" id="inquiryForm">
+            <div class="form__row">
+              <label for="name">Name</label>
+              <input id="name" name="name" autocomplete="name" required placeholder="Vor- und Nachname" />
+            </div>
+
+            <div class="form__row">
+              <label for="email">E-Mail</label>
+              <input id="email" name="email" type="email" autocomplete="email" required placeholder="name@mail.de" />
+            </div>
+
+            <div class="form__row two">
+              <div>
+                <label for="from">Anreise</label>
+                <input id="from" name="from" type="date" required />
+              </div>
+              <div>
+                <label for="to">Abreise</label>
+                <input id="to" name="to" type="date" required />
+              </div>
+            </div>
+
+            <div class="form__row">
+              <label for="type">Camping-Paket</label>
+              <select id="type" name="type">
+                <option>Basic</option>
+                <option>Komfort</option>
+              </select>
+            </div>
+
+            <div class="form__row">
+              <label for="message">Nachricht</label>
+              <textarea id="message" name="message" rows="5" placeholder="Anzahl Personen, Reist ein tierischer Freund mit, Wünsche, Fragen, Sonstiges …"></textarea>
+            </div>
+
+            <div class="form-buttons">
+              <button class="btn" type="button" id="emailBtn">Per E-Mail senden</button>
+              <button class="btn btn--whatsapp" type="button" id="whatsappBtn">Per WhatsApp senden</button>
+            </div>
+
+            <p class="fineprint">
+              Beim Klick öffnet sich dein E-Mail-Programm oder WhatsApp mit einer fertigen Anfrage.
+            </p>
+
+            <p class="error" id="formError" aria-live="polite"></p>
+          </form>
+
+          <div class="contact-card">
+            <div class="contact-card__top">
+              <h3>Westzipfelcamp</h3>
+              <p class="muted">Schulstr. 61, 52525 Waldfeucht</p>
+            </div>
+
+            <div class="contact-lines">
+              <div><strong>E-Mail:</strong> <a href="mailto:info@westzipfelcamp.de">info@westzipfelcamp.de</a></div>
+              <div><strong>Telefon:</strong> <a href="tel:+491786065840">01786 065840</a></div>
+            </div>
+
+            <div class="map">
+              <iframe
+                title="Karte (OpenStreetMap)"
+                src="https://www.openstreetmap.org/export/embed.html?bbox=5.995833%2C51.041667%2C6.015833%2C51.061667&amp;layer=mapnik&amp;marker=51.051667%2C6.005833"
+                loading="lazy">
+              </iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="container footer__inner">
+        <div>
+          <div class="footer__brand">Westzipfelcamp</div>
+          <div class="footer__meta">© <span id="year"></span> • Schulstr. 61, 52525 Waldfeucht</div>
+        </div>
+
+        <div class="footer__links">
+          <a href="#" id="impressumLink">Impressum</a>
+          <a href="#" id="datenschutzLink">Datenschutz</a>
+        </div>
+      </div>
+
+      <dialog id="legalDialog" class="dialog">
+        <div class="dialog__inner">
+          <h3 id="legalTitle">Hinweis</h3>
+          <p id="legalText" class="muted">
+            Bitte ergänze hier dein Impressum/Datenschutz. Wenn du mir Betreibername/Adresse gibst, formuliere ich dir eine passende Vorlage.
+          </p>
+          <button class="btn btn--small" id="closeDialog">Schließen</button>
+        </div>
+      </dialog>
+    </footer>
+
+  </main>
+
+  <!-- LIGHTBOX -->
+  <dialog id="lightbox" class="lightbox" aria-label="Bild in Vollbild">
+    <button class="lightbox__close" type="button" data-lightbox-close aria-label="Schließen">✕</button>
+    <button class="lightbox__nav lightbox__nav--prev" type="button" data-lightbox-prev aria-label="Vorheriges Bild">‹</button>
+    <button class="lightbox__nav lightbox__nav--next" type="button" data-lightbox-next aria-label="Nächstes Bild">›</button>
+
+    <figure class="lightbox__figure">
+      <img id="lightboxImg" alt="" />
+      <figcaption id="lightboxCap"></figcaption>
+    </figure>
+  </dialog>
+
+</body>
+</html>
