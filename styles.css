@@ -41,7 +41,7 @@
 
   <main id="content">
 
-    <!-- HERO mit echtem Bild -->
+    <!-- HERO -->
     <section class="hero hero--photo" aria-label="Startbereich">
       <div class="hero__bg" aria-hidden="true"></div>
       <div class="hero__overlay" aria-hidden="true"></div>
@@ -60,7 +60,7 @@
       </div>
     </section>
 
-    <!-- WESTZIPFELCAMP + GALERIE -->
+    <!-- WESTZIPFELCAMP -->
     <section id="camp" class="section">
       <div class="container">
         <div class="section__header">
@@ -70,7 +70,8 @@
           </p>
         </div>
 
-        <div class="grid-2">
+        <!-- Wichtig: nicht mehr 2-spaltig, sondern untereinander -->
+        <div class="stack">
           <div class="card camp-text">
             <p>
               Bei uns campst du unkompliziert und angenehm: <strong>großzügige Stellflächen</strong> im Grünen, ein offenes Platzgefühl
