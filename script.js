@@ -2,9 +2,9 @@
 const year = document.getElementById("year");
 if (year) year.textContent = new Date().getFullYear();
 
-/* =========================================
+/* =======================
    Mobile Navigation
-========================================= */
+======================= */
 const toggle = document.querySelector(".nav-toggle");
 const nav = document.querySelector(".nav");
 
@@ -22,44 +22,104 @@ if (toggle && nav) {
   });
 }
 
-/* =========================================
-   Anfrageformular (mailto)
-========================================= */
+/* =======================
+   Formular: Validierung + Text erzeugen
+======================= */
 const form = document.getElementById("inquiryForm");
-if (form) {
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
+const emailBtn = document.getElementById("emailBtn");
+const whatsappBtn = document.getElementById("whatsappBtn");
+const formError = document.getElementById("formError");
 
-    const receiver = "info@westzipfelcamp.de";
-    const data = new FormData(form);
+function validateForm() {
+  if (!form) return false;
+  formError.textContent = "";
 
-    const subject = `Anfrage Westzipfelcamp (${data.get("from")}–${data.get("to")})`;
+  const required = ["name", "email", "from", "to"];
+  for (const key of required) {
+    const el = form.querySelector(`[name="${key}"]`);
+    if (!el || !el.value) {
+      formError.textContent = "Bitte fülle alle Pflichtfelder aus (Name, E-Mail, Anreise, Abreise).";
+      el?.focus();
+      return false;
+    }
+  }
 
-    const body =
-`Hallo Westzipfelcamp-Team,
+  // simple date check
+  const from = form.querySelector('[name="from"]').value;
+  const to = form.querySelector('[name="to"]').value;
+  if (from && to && to < from) {
+    formError.textContent = "Bitte prüfe die Daten: Abreise darf nicht vor Anreise liegen.";
+    form.querySelector('[name="to"]').focus();
+    return false;
+  }
+
+  return true;
+}
+
+function buildMessage() {
+  const data = new FormData(form);
+
+  const name = (data.get("name") || "").toString().trim();
+  const email = (data.get("email") || "").toString().trim();
+  const from = (data.get("from") || "").toString().trim();
+  const to = (data.get("to") || "").toString().trim();
+  const type = (data.get("type") || "").toString().trim();
+  const msg = (data.get("message") || "").toString().trim();
+
+  const text =
+`Hallo Westzipfelcamp,
 
 ich möchte gerne anfragen:
 
-Name: ${data.get("name")}
-E-Mail: ${data.get("email")}
-Anreise: ${data.get("from")}
-Abreise: ${data.get("to")}
-Camping-Paket: ${data.get("type")}
+Name: ${name}
+E-Mail: ${email}
+Anreise: ${from}
+Abreise: ${to}
+Camping-Paket: ${type}
 
 Nachricht:
-${data.get("message")}
+${msg || "-"}
 
 Viele Grüße
-${data.get("name")}`;
+${name}`;
 
-    const mailto = `mailto:${encodeURIComponent(receiver)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  return { name, email, from, to, type, msg, text };
+}
+
+/* =======================
+   Versand: E-Mail
+======================= */
+if (emailBtn && form) {
+  emailBtn.addEventListener("click", () => {
+    if (!validateForm()) return;
+
+    const { from, to, text } = buildMessage();
+    const receiver = "info@westzipfelcamp.de";
+    const subject = `Anfrage Westzipfelcamp (${from}–${to})`;
+
+    const mailto = `mailto:${encodeURIComponent(receiver)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(text)}`;
     window.location.href = mailto;
   });
 }
 
-/* =========================================
+/* =======================
+   Versand: WhatsApp
+======================= */
+if (whatsappBtn && form) {
+  whatsappBtn.addEventListener("click", () => {
+    if (!validateForm()) return;
+
+    const { text } = buildMessage();
+    const phoneNumber = "491786065840"; // WhatsApp: ohne +, ohne Leerzeichen
+    const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(text)}`;
+
+    window.open(url, "_blank");
+  });
+}
+
+/* =======================
    Galerie (Auto + Swipe)
-========================================= */
+======================= */
 const gallery = document.querySelector("[data-gallery]");
 const dotsWrap = document.querySelector("[data-gallery-dots]");
 const prevBtn = document.querySelector("[data-gallery-prev]");
@@ -78,22 +138,21 @@ function stopAuto() {
 function startAuto(nextFn) {
   stopAuto();
   autoTimer = setInterval(() => {
-    if (!isPaused && !isLightboxOpen) {
-      nextFn();
-    }
+    if (!isPaused && !isLightboxOpen) nextFn();
   }, INTERVAL_MS);
 }
 
-function pauseAuto() {
+function pauseAutoTemp() {
   isPaused = true;
-  setTimeout(() => isPaused = false, 8000);
+  setTimeout(() => (isPaused = false), 8000);
 }
 
 if (gallery) {
   const slides = Array.from(gallery.querySelectorAll(".slide"));
 
   function getCurrentIndex() {
-    return Math.round(gallery.scrollLeft / gallery.clientWidth);
+    const w = gallery.clientWidth || 1;
+    return Math.round(gallery.scrollLeft / w);
   }
 
   function setActiveDot(i) {
@@ -112,36 +171,38 @@ if (gallery) {
   function next() { scrollToSlide(getCurrentIndex() + 1); }
   function prev() { scrollToSlide(getCurrentIndex() - 1); }
 
-  // Dots
   if (dotsWrap) {
     dotsWrap.innerHTML = "";
     slides.forEach((_, i) => {
       const dot = document.createElement("button");
       dot.className = "dot";
+      dot.setAttribute("aria-label", `Bild ${i + 1}`);
       dot.addEventListener("click", () => {
-        pauseAuto();
+        pauseAutoTemp();
         scrollToSlide(i);
       });
       dotsWrap.appendChild(dot);
     });
   }
 
-  prevBtn?.addEventListener("click", () => { pauseAuto(); prev(); });
-  nextBtn?.addEventListener("click", () => { pauseAuto(); next(); });
+  prevBtn?.addEventListener("click", () => { pauseAutoTemp(); prev(); });
+  nextBtn?.addEventListener("click", () => { pauseAutoTemp(); next(); });
 
+  let t;
   gallery.addEventListener("scroll", () => {
-    setActiveDot(getCurrentIndex());
+    clearTimeout(t);
+    t = setTimeout(() => setActiveDot(getCurrentIndex()), 80);
   });
 
-  gallery.addEventListener("touchstart", pauseAuto, { passive: true });
+  gallery.addEventListener("touchstart", pauseAutoTemp, { passive: true });
 
   setActiveDot(0);
   startAuto(next);
 }
 
-/* =========================================
-   LIGHTBOX (Vollbild + Swipe)
-========================================= */
+/* =======================
+   Lightbox (Vollbild + Swipe) + Auto stoppen
+======================= */
 const lightbox = document.getElementById("lightbox");
 const lightboxImg = document.getElementById("lightboxImg");
 const lightboxCap = document.getElementById("lightboxCap");
@@ -154,21 +215,21 @@ let lbItems = [];
 
 if (gallery) {
   const figures = Array.from(gallery.querySelectorAll(".slide"));
-
   lbItems = figures.map(fig => {
     const img = fig.querySelector("img");
-    const cap = fig.querySelector("figcaption")?.textContent || "";
-    return { src: img.src, alt: img.alt, cap };
+    const cap = fig.querySelector("figcaption")?.textContent?.trim() || "";
+    return { src: img?.getAttribute("src") || "", alt: img?.getAttribute("alt") || "", cap };
   });
 
   figures.forEach((fig, i) => {
-    const btn = fig.querySelector("[data-lightbox-open]");
-    btn?.addEventListener("click", () => openLightbox(i));
+    fig.querySelector("[data-lightbox-open]")?.addEventListener("click", () => openLightbox(i));
   });
 }
 
 function setLightbox(index) {
+  if (!lbItems.length) return;
   lbIndex = (index + lbItems.length) % lbItems.length;
+
   const item = lbItems[lbIndex];
   lightboxImg.src = item.src;
   lightboxImg.alt = item.alt;
@@ -176,57 +237,60 @@ function setLightbox(index) {
 }
 
 function openLightbox(index) {
+  if (!lightbox) return;
   isLightboxOpen = true;
-  stopAuto();   // 🔴 Auto-Slider komplett stoppen
+
+  // Auto-Slider komplett stoppen, damit sich im Hintergrund nichts ändert
+  stopAuto();
+
   setLightbox(index);
   lightbox.showModal();
 }
 
 function closeLightbox() {
+  if (!lightbox) return;
   lightbox.close();
+
   isLightboxOpen = false;
-  startAuto(() => {
-    const g = document.querySelector("[data-gallery]");
-    if (g) g.scrollBy({ left: g.clientWidth, behavior: "smooth" });
-  }); // ▶️ Auto wieder starten
+
+  // Auto-Slider wieder starten (nur wenn Galerie existiert)
+  if (gallery) {
+    startAuto(() => {
+      const w = gallery.clientWidth || 1;
+      gallery.scrollBy({ left: w, behavior: "smooth" });
+    });
+  }
 }
 
 lbClose?.addEventListener("click", closeLightbox);
 lbPrev?.addEventListener("click", () => setLightbox(lbIndex - 1));
 lbNext?.addEventListener("click", () => setLightbox(lbIndex + 1));
 
-/* Klick außerhalb schließt */
 lightbox?.addEventListener("click", (e) => {
+  // Klick auf den dunklen Hintergrund schließt
   if (e.target === lightbox) closeLightbox();
 });
 
-/* Tastatursteuerung */
 window.addEventListener("keydown", (e) => {
-  if (!lightbox.open) return;
+  if (!lightbox || !lightbox.open) return;
   if (e.key === "Escape") closeLightbox();
   if (e.key === "ArrowLeft") setLightbox(lbIndex - 1);
   if (e.key === "ArrowRight") setLightbox(lbIndex + 1);
 });
 
-/* =========================================
-   Swipe im Vollbild (Touch)
-========================================= */
+/* Swipe im Vollbild */
 let startX = 0;
-let endX = 0;
 
 lightboxImg?.addEventListener("touchstart", (e) => {
   startX = e.changedTouches[0].clientX;
 }, { passive: true });
 
 lightboxImg?.addEventListener("touchend", (e) => {
-  endX = e.changedTouches[0].clientX;
+  const endX = e.changedTouches[0].clientX;
   const diff = startX - endX;
 
-  if (Math.abs(diff) > 50) { // Mindest-Wischdistanz
-    if (diff > 0) {
-      setLightbox(lbIndex + 1); // nach links wischen = nächstes Bild
-    } else {
-      setLightbox(lbIndex - 1); // nach rechts wischen = vorheriges Bild
-    }
+  if (Math.abs(diff) > 50) {
+    if (diff > 0) setLightbox(lbIndex + 1);
+    else setLightbox(lbIndex - 1);
   }
 }, { passive: true });
