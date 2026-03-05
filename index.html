@@ -76,8 +76,14 @@
               und kurze Wege. Für den Alltag vor Ort stehen <strong>Sanitäreinrichtungen</strong> sowie <strong>Duschen</strong> bereit.
               Wasser kannst du nach Verbrauch nutzen – praktisch zum Auffüllen oder fürs Abspülen.
             </p>
+
             <p>
-              Wer es besonders bequem mag, wählt das <strong>Komfort-Paket</strong> mit <strong>Strom</strong>.
+              <strong>Hunde sind bei uns herzlich willkommen und kostenfrei.</strong>
+              Bitte beachte: Es bestehen aktuell <strong>keine Entsorgungsmöglichkeiten</strong> für Campingtoiletten.
+            </p>
+
+            <p>
+              Wer es besonders bequem mag, wählt das <strong>Komfort- oder Premium-Paket</strong>.
               Und an warmen Tagen gibt’s ein Extra: Ein <strong>Pool</strong> ist <strong>nach Absprache mit dem Eigentümer</strong> nutzbar.
               So bleibt der Aufenthalt entspannt – genau so, wie Camping sein soll.
             </p>
@@ -138,7 +144,7 @@
               <div class="reviews-title__left">
                 <h3>Rezensionen</h3>
                 <p class="muted reviews-sub">
-                  Auszüge aus 5-Sterne-Bewertungen (manuell gepflegt) – weitere Bewertungen auf den Plattformen.
+                  Auszüge aus 5-Sterne-Bewertungen (manuell gepflegt) – weitere Bewertungen auf den Plattformen:
                 </p>
               </div>
 
@@ -176,7 +182,7 @@
 
             <div class="dots" data-reviews-dots aria-label="Rezensionen-Navigation"></div>
 
-            <!-- Plattform-Buttons (zentriert + größer) -->
+            <!-- Plattform-Logos -->
             <div class="platform-logos" aria-label="Bewertungsplattformen">
               <a class="platform-btn" href="https://park4night.com/de/place/508338" target="_blank" rel="noopener"
                  aria-label="Westzipfelcamp auf park4night ansehen">
@@ -217,7 +223,8 @@
         </div>
 
         <div class="price-grid">
-          <div class="price price--highlight">
+          <!-- Basic: jetzt normal wie Komfort (keine Highlight-Umrandung mehr) -->
+          <div class="price">
             <div class="price__top">
               <h3>Basic</h3>
               <span class="price__tag">8€ / Nacht</span>
@@ -225,8 +232,11 @@
             <ul>
               <li>Stellfläche</li>
               <li>Zugang zu Sanitäreinrichtungen</li>
+              <li>Preis gilt für 2 Personen</li>
+              <li>jede weitere Person +2,00€ / Nacht</li>
               <li>+ 0,50€ pro Nutzung der Dusche</li>
-              <li>+ 1€ pro 100L Wasser</li>
+              <li>+ 1€ pro 100/L Wasser</li>
+              <li>WLAN 1€ / Nacht</li>
             </ul>
           </div>
 
@@ -239,8 +249,30 @@
               <li>Stellfläche</li>
               <li>Strom</li>
               <li>Zugang zu Sanitäreinrichtungen</li>
+              <li>Preis gilt für 2 Personen</li>
+              <li>jede weitere Person +2,00€ / Nacht</li>
               <li>+ 0,50€ pro Nutzung der Dusche</li>
-              <li>+ 1€ pro 100L Wasser</li>
+              <li>+ 1€ pro 100/L Wasser</li>
+              <li>WLAN 1€ / Nacht</li>
+            </ul>
+          </div>
+
+          <!-- Premium: grün umrandet + empfohlen -->
+          <div class="price price--premium">
+            <div class="badge" aria-label="Empfohlen">Empfohlen</div>
+
+            <div class="price__top">
+              <h3>Premium</h3>
+              <span class="price__tag">15€ / Nacht</span>
+            </div>
+            <ul>
+              <li>Stellfläche</li>
+              <li>Zugang zu Sanitäreinrichtungen</li>
+              <li>Duschen frei</li>
+              <li>Wassernutzung frei</li>
+              <li>WLAN frei</li>
+              <li>Angebotspreis gilt für 3 Personen</li>
+              <li>jede weitere Person +2,00€ / Nacht</li>
             </ul>
           </div>
         </div>
@@ -283,6 +315,7 @@
               <select id="type" name="type">
                 <option>Basic</option>
                 <option>Komfort</option>
+                <option>Premium</option>
               </select>
             </div>
 
