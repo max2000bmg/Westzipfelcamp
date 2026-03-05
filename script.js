@@ -23,6 +23,25 @@ if (toggle && nav) {
 }
 
 /* =======================
+   Legal Dialog (Impressum/Datenschutz)
+======================= */
+const legalDialog = document.getElementById("legalDialog");
+const legalTitle = document.getElementById("legalTitle");
+const legalText = document.getElementById("legalText");
+const closeDialog = document.getElementById("closeDialog");
+const impressumLink = document.getElementById("impressumLink");
+const datenschutzLink = document.getElementById("datenschutzLink");
+
+function openLegal(title) {
+  if (!legalDialog) return;
+  legalTitle.textContent = title;
+  legalDialog.showModal();
+}
+impressumLink?.addEventListener("click", (e) => { e.preventDefault(); openLegal("Impressum"); });
+datenschutzLink?.addEventListener("click", (e) => { e.preventDefault(); openLegal("Datenschutz"); });
+closeDialog?.addEventListener("click", () => legalDialog?.close());
+
+/* =======================
    Formular: Validierung + Text erzeugen
 ======================= */
 const form = document.getElementById("inquiryForm");
@@ -56,7 +75,6 @@ function validateForm() {
 
 function buildMessage() {
   const data = new FormData(form);
-
   const name = (data.get("name") || "").toString().trim();
   const email = (data.get("email") || "").toString().trim();
   const from = (data.get("from") || "").toString().trim();
@@ -84,35 +102,24 @@ ${name}`;
   return { from, to, text };
 }
 
-/* =======================
-   Versand: E-Mail
-======================= */
-if (emailBtn && form) {
-  emailBtn.addEventListener("click", () => {
-    if (!validateForm()) return;
+/* Versand: E-Mail */
+emailBtn?.addEventListener("click", () => {
+  if (!validateForm()) return;
+  const { from, to, text } = buildMessage();
+  const receiver = "info@westzipfelcamp.de";
+  const subject = `Anfrage Westzipfelcamp (${from}–${to})`;
+  const mailto = `mailto:${encodeURIComponent(receiver)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(text)}`;
+  window.location.href = mailto;
+});
 
-    const { from, to, text } = buildMessage();
-    const receiver = "info@westzipfelcamp.de";
-    const subject = `Anfrage Westzipfelcamp (${from}–${to})`;
-
-    const mailto = `mailto:${encodeURIComponent(receiver)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(text)}`;
-    window.location.href = mailto;
-  });
-}
-
-/* =======================
-   Versand: WhatsApp
-======================= */
-if (whatsappBtn && form) {
-  whatsappBtn.addEventListener("click", () => {
-    if (!validateForm()) return;
-
-    const { text } = buildMessage();
-    const phoneNumber = "491786065840";
-    const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(text)}`;
-    window.open(url, "_blank");
-  });
-}
+/* Versand: WhatsApp */
+whatsappBtn?.addEventListener("click", () => {
+  if (!validateForm()) return;
+  const { text } = buildMessage();
+  const phoneNumber = "491786065840"; // ohne +, ohne Leerzeichen
+  const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(text)}`;
+  window.open(url, "_blank");
+});
 
 /* =======================
    Galerie (Auto + Swipe)
@@ -172,10 +179,7 @@ if (gallery) {
       const dot = document.createElement("button");
       dot.className = "dot";
       dot.setAttribute("aria-label", `Bild ${i + 1}`);
-      dot.addEventListener("click", () => {
-        pauseAutoTemp();
-        scrollToSlide(i);
-      });
+      dot.addEventListener("click", () => { pauseAutoTemp(); scrollToSlide(i); });
       dotsWrap.appendChild(dot);
     });
   }
@@ -352,6 +356,7 @@ window.addEventListener("keydown", (e) => {
   if (e.key === "ArrowRight") setLightbox(lbIndex + 1);
 });
 
+/* Swipe im Vollbild */
 let startX = 0;
 lightboxImg?.addEventListener("touchstart", (e) => {
   startX = e.changedTouches[0].clientX;
