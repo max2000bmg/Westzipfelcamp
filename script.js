@@ -370,3 +370,64 @@ lightboxImg?.addEventListener("touchend", (e) => {
     else setLightbox(lbIndex - 1);
   }
 }, { passive: true });
+
+/* GoatCounter Button Tracking */
+
+function trackClick(name){
+
+if(window.goatcounter){
+
+window.goatcounter.count({
+path: name,
+title: name,
+event: true
+})
+
+}
+
+}
+
+/* WhatsApp */
+document.getElementById("whatsappBtn")?.addEventListener("click",()=>{
+trackClick("whatsapp_anfrage")
+})
+
+/* Mail */
+document.getElementById("emailBtn")?.addEventListener("click",()=>{
+trackClick("email_anfrage")
+})
+
+/* Google Maps */
+document.querySelectorAll('a[href*="maps"]').forEach(link=>{
+link.addEventListener("click",()=>{
+trackClick("google_maps")
+})
+})
+
+/* Park4Night */
+document.querySelectorAll('a[href*="park4night"]').forEach(link=>{
+link.addEventListener("click",()=>{
+trackClick("park4night")
+})
+})
+
+/* Promobil */
+document.querySelectorAll('a[href*="promobil"]').forEach(link=>{
+link.addEventListener("click",()=>{
+trackClick("promobil")
+})
+})
+
+/* Campercontact */
+document.querySelectorAll('a[href*="campercontact"]').forEach(link=>{
+link.addEventListener("click",()=>{
+trackClick("campercontact")
+})
+})
+
+/* Stellplatzführer */
+document.querySelectorAll('a[href*="stellplatzfuehrer"]').forEach(link=>{
+link.addEventListener("click",()=>{
+trackClick("stellplatzfuehrer")
+})
+})
