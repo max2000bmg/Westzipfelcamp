@@ -188,82 +188,366 @@
 
 </div>
 
-          <!-- Rezensionen -->
-          <div class="card card--reviews">
-            <div class="reviews-title">
-              <div class="reviews-title__left">
-                <h3>Rezensionen</h3>
-                <p class="muted reviews-sub">
-                  Auszüge aus 5-Sterne-Bewertungen (manuell gepflegt) – weitere Bewertungen auf den Plattformen:
-                </p>
-              </div>
+ <!-- Rezensionen -->
+<div class="card card--reviews">
 
-              <div class="reviews-controls">
-                <button class="gbtn" type="button" data-reviews-prev aria-label="Vorherige Rezension">‹</button>
-                <button class="gbtn" type="button" data-reviews-next aria-label="Nächste Rezension">›</button>
-              </div>
-            </div>
+  <!-- Kopfbereich -->
+  <div class="reviews-head">
 
-            <div class="reviews" data-reviews aria-label="Rezensionen-Slider">
-              <article class="review-slide">
-                <div class="stars" aria-label="5 von 5 Sternen">★★★★★</div>
-                <p class="review-text">„Klein & persönlich, sehr freundlich. Alles sehr sauber – wer Ruhe sucht, ist hier richtig.“</p>
-                <div class="review-meta">5-Sterne • Auszug</div>
-              </article>
+    <div class="reviews-head__text">
+      <span class="reviews-eyebrow">Das sagen unsere Gäste</span>
+      <h3>Rezensionen</h3>
 
-              <article class="review-slide">
-                <div class="stars" aria-label="5 von 5 Sternen">★★★★★</div>
-                <p class="review-text">„Absolut ruhig, super sauber und an alles gedacht. Klare Empfehlung.“</p>
-                <div class="review-meta">5-Sterne • Auszug</div>
-              </article>
+      <p class="muted reviews-sub">
+        Persönlich, ruhig und unkompliziert – wir freuen uns über das
+        tolle Feedback unserer Gäste.
+      </p>
+    </div>
 
-              <article class="review-slide">
-                <div class="stars" aria-label="5 von 5 Sternen">★★★★★</div>
-                <p class="review-text">„Wunderschöner Platz – ideal zum Abschalten. Sehr nette Betreiber.“</p>
-                <div class="review-meta">5-Sterne • Auszug</div>
-              </article>
+    <div class="reviews-controls">
+      <button
+        class="gbtn"
+        type="button"
+        data-reviews-prev
+        aria-label="Vorherige Rezension">
+        ‹
+      </button>
 
-              <article class="review-slide">
-                <div class="stars" aria-label="5 von 5 Sternen">★★★★★</div>
-                <p class="review-text">„Rundum stimmig, entspannte Nacht und freundlicher Empfang.“</p>
-                <div class="review-meta">5-Sterne • Auszug</div>
-              </article>
-            </div>
+      <button
+        class="gbtn"
+        type="button"
+        data-reviews-next
+        aria-label="Nächste Rezension">
+        ›
+      </button>
+    </div>
 
-            <div class="dots" data-reviews-dots aria-label="Rezensionen-Navigation"></div>
+  </div>
 
-            <!-- Plattform-Logos -->
-            <div class="platform-logos" aria-label="Bewertungsplattformen">
-              <a class="platform-btn" href="https://park4night.com/de/place/508338" target="_blank" rel="noopener"
-                 aria-label="Westzipfelcamp auf park4night ansehen">
-                <img class="platform-logo" src="assets/logos/park4night.png" alt="park4night">
-              </a>
 
-              <a class="platform-btn" href="https://www.stellplatzfuehrer.de/plaetze/listen/alle/34854-westzipfelcamp"
-                 target="_blank" rel="noopener" aria-label="Westzipfelcamp auf stellplatzfuehrer.de ansehen">
-                <img class="platform-logo" src="assets/logos/stellplatzfuehrer.png" alt="Stellplatzführer">
-              </a>
+  <!-- Google Bewertung -->
+  <a
+    class="google-rating-card"
+    href="https://maps.app.goo.gl/dP5imqdzkSyQatoF9?g_st=ic"
+    target="_blank"
+    rel="noopener"
+    aria-label="Westzipfelcamp Bewertungen auf Google Maps ansehen">
 
-              <a class="platform-btn" href="https://www.promobil.de/stellplatz/westzipfelcamp-66aaad1c34c3800008304183.html"
-                 target="_blank" rel="noopener" aria-label="Westzipfelcamp auf promobil.de ansehen">
-                <img class="platform-logo" src="assets/logos/promobil.jpg" alt="promobil">
-              </a>
+    <div class="google-rating-card__logo">
+      <img
+        src="assets/logos/googlemaps.png"
+        alt=""
+        aria-hidden="true">
+    </div>
 
-              <a class="platform-btn" href="https://www.campercontact.com/de/deutschland/nordrhein-westfalen/waldfeucht/159146/westzipfelcamp"
-                 target="_blank" rel="noopener" aria-label="Westzipfelcamp auf Campercontact ansehen">
-                <img class="platform-logo" src="assets/logos/campercontact.jpg" alt="Campercontact">
-              </a>
+    <div class="google-rating-card__content">
 
-              <a class="platform-btn" href="https://maps.app.goo.gl/dP5imqdzkSyQatoF9?g_st=ic"
-                 target="_blank" rel="noopener" aria-label="Westzipfelcamp auf Google Maps ansehen">
-                <img class="platform-logo" src="assets/logos/googlemaps.png" alt="Google Maps">
-              </a>
-            </div>
+      <div class="google-rating-card__top">
+        <strong>Westzipfelcamp auf Google</strong>
+
+        <span class="google-rating-card__score">
+          5,0
+        </span>
+      </div>
+
+      <div class="google-rating-card__bottom">
+
+        <span
+          class="google-stars"
+          aria-label="5 von 5 Sternen">
+          ★★★★★
+        </span>
+
+        <span class="google-rating-card__link">
+          Bewertungen ansehen →
+        </span>
+
+      </div>
+
+    </div>
+
+  </a>
+
+
+  <!-- Rezensionen-Slider -->
+  <div
+    class="reviews"
+    data-reviews
+    aria-label="Rezensionen-Slider">
+
+
+    <!-- Rezension 1 -->
+    <article class="review-slide">
+
+      <div class="review-slide__top">
+
+        <div
+          class="stars"
+          aria-label="5 von 5 Sternen">
+          ★★★★★
+        </div>
+
+        <span class="review-source">
+          Gästestimme
+        </span>
+
+      </div>
+
+      <p class="review-text">
+        „Klein & persönlich, sehr freundlich. Alles sehr sauber –
+        wer Ruhe sucht, ist hier richtig.“
+      </p>
+
+      <div class="review-meta">
+        5 Sterne
+      </div>
+
+    </article>
+
+
+    <!-- Rezension 2 -->
+    <article class="review-slide">
+
+      <div class="review-slide__top">
+
+        <div
+          class="stars"
+          aria-label="5 von 5 Sternen">
+          ★★★★★
+        </div>
+
+        <span class="review-source">
+          Gästestimme
+        </span>
+
+      </div>
+
+      <p class="review-text">
+        „Absolut ruhig, super sauber und an alles gedacht.
+        Klare Empfehlung.“
+      </p>
+
+      <div class="review-meta">
+        5 Sterne
+      </div>
+
+    </article>
+
+
+    <!-- Rezension 3 -->
+    <article class="review-slide">
+
+      <div class="review-slide__top">
+
+        <div
+          class="stars"
+          aria-label="5 von 5 Sternen">
+          ★★★★★
+        </div>
+
+        <span class="review-source">
+          Gästestimme
+        </span>
+
+      </div>
+
+      <p class="review-text">
+        „Wunderschöner Platz – ideal zum Abschalten.
+        Sehr nette Betreiber.“
+      </p>
+
+      <div class="review-meta">
+        5 Sterne
+      </div>
+
+    </article>
+
+
+    <!-- Rezension 4 -->
+    <article class="review-slide">
+
+      <div class="review-slide__top">
+
+        <div
+          class="stars"
+          aria-label="5 von 5 Sternen">
+          ★★★★★
+        </div>
+
+        <span class="review-source">
+          Gästestimme
+        </span>
+
+      </div>
+
+      <p class="review-text">
+        „Rundum stimmig, entspannte Nacht und
+        freundlicher Empfang.“
+      </p>
+
+      <div class="review-meta">
+        5 Sterne
+      </div>
+
+    </article>
+
+
+    <!-- Rezension 5 – Promobil -->
+    <article class="review-slide">
+
+      <div class="review-slide__top">
+
+        <div
+          class="stars"
+          aria-label="5 von 5 Sternen">
+          ★★★★★
+        </div>
+
+        <span class="review-source review-source--promobil">
+          Promobil
+        </span>
+
+      </div>
+
+      <p class="review-text">
+        „Sehr schöner kleiner Stellplatz. Petra und Guido sind
+        super Gastgeber und immer hilfsbereit.“
+      </p>
+
+      <div class="review-meta">
+        Promobil • Juli 2026
+      </div>
+
+    </article>
+
+
+    <!--
+      HIER KÖNNEN SPÄTER GOOGLE-REZENSIONEN EINFACH ERGÄNZT WERDEN:
+
+      <article class="review-slide">
+
+        <div class="review-slide__top">
+
+          <div class="stars"
+               aria-label="5 von 5 Sternen">
+            ★★★★★
           </div>
 
+          <span class="review-source review-source--google">
+            Google
+          </span>
+
         </div>
-      </div>
-    </section>
+
+        <p class="review-text">
+          „Hier kommt der echte Auszug aus der
+          Google-Rezension hinein.“
+        </p>
+
+        <div class="review-meta">
+          Google Maps
+        </div>
+
+      </article>
+    -->
+
+  </div>
+
+
+  <!-- Dots -->
+  <div
+    class="dots"
+    data-reviews-dots
+    aria-label="Rezensionen-Navigation">
+  </div>
+
+
+  <!-- Bewertungsplattformen -->
+  <div class="reviews-platform-title">
+    Weitere Bewertungen & Einträge
+  </div>
+
+  <div
+    class="platform-logos"
+    aria-label="Bewertungsplattformen">
+
+    <a
+      class="platform-btn"
+      href="https://park4night.com/de/place/508338"
+      target="_blank"
+      rel="noopener"
+      aria-label="Westzipfelcamp auf park4night ansehen">
+
+      <img
+        class="platform-logo"
+        src="assets/logos/park4night.png"
+        alt="park4night">
+
+    </a>
+
+
+    <a
+      class="platform-btn"
+      href="https://www.stellplatzfuehrer.de/plaetze/listen/alle/34854-westzipfelcamp"
+      target="_blank"
+      rel="noopener"
+      aria-label="Westzipfelcamp auf Stellplatzführer ansehen">
+
+      <img
+        class="platform-logo"
+        src="assets/logos/stellplatzfuehrer.png"
+        alt="Stellplatzführer">
+
+    </a>
+
+
+    <a
+      class="platform-btn"
+      href="https://www.promobil.de/stellplatz/westzipfelcamp-66aaad1c34c3800008304183.html"
+      target="_blank"
+      rel="noopener"
+      aria-label="Westzipfelcamp auf Promobil ansehen">
+
+      <img
+        class="platform-logo"
+        src="assets/logos/promobil.jpg"
+        alt="Promobil">
+
+    </a>
+
+
+    <a
+      class="platform-btn"
+      href="https://www.campercontact.com/de/deutschland/nordrhein-westfalen/waldfeucht/159146/westzipfelcamp"
+      target="_blank"
+      rel="noopener"
+      aria-label="Westzipfelcamp auf Campercontact ansehen">
+
+      <img
+        class="platform-logo"
+        src="assets/logos/campercontact.jpg"
+        alt="Campercontact">
+
+    </a>
+
+
+    <a
+      class="platform-btn platform-btn--google"
+      href="https://maps.app.goo.gl/dP5imqdzkSyQatoF9?g_st=ic"
+      target="_blank"
+      rel="noopener"
+      aria-label="Westzipfelcamp auf Google Maps ansehen">
+
+      <img
+        class="platform-logo"
+        src="assets/logos/googlemaps.png"
+        alt="Google Maps">
+
+    </a>
+
+  </div>
+
+</div>
 
     <!-- PREISE -->
     <section id="preise" class="section section--soft">
