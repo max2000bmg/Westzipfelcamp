@@ -1,617 +1,889 @@
 <!doctype html>
-
 <html lang="de">
 <head>
-
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌿</text></svg>">
-
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Westzipfelcamp – Camping in Waldfeucht</title>
-  <meta name="description" content="Westzipfelcamp in 52525 Waldfeucht – naturverbunden, freundlich und modern." />
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;500;700;800&display=swap" rel="stylesheet">
-
-  <!-- GoatCounter Tracking -->
-
-  <script data-goatcounter="https://westzipfelcamp.goatcounter.com/count"
-          async src="//gc.zgo.at/count.js"></script>
-
-  <link rel="stylesheet" href="styles.css" />
-  <script defer src="script.js"></script>
-
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Vöchter im Kuhstall · 2026</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🐮%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="style.css">
+  <!-- QR-Codes sind optional. Ohne Internet/CDN funktionieren die Spielerlinks weiterhin. -->
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 </head>
-
 <body>
-  <a class="skip-link" href="#content">Zum Inhalt</a>
-
-  <header class="header">
-    <div class="container header__inner">
-      <div class="brand">
-        <div class="brand__mark" aria-hidden="true">🌿</div>
-        <div class="brand__text">
-          <div class="brand__name">Westzipfelcamp</div>
-          <div class="brand__sub">Schulstr. 61 • 52525 Waldfeucht</div>
-        </div>
-      </div>
-
-  <button class="nav-toggle" aria-label="Menü öffnen" aria-expanded="false">
-    <span></span><span></span><span></span>
-  </button>
-
-<nav class="nav" aria-label="Hauptnavigation">
-  <a href="#camp">Westzipfelcamp</a>
-  <a href="#preise">Preise</a>
-  <a href="unterstuetzen.html">❤️ Unterstütze uns</a>
-  <a class="btn btn--small" href="#kontakt">Anfragen</a>
-</nav>
-    </div>
+<main class="wrap">
+  <header>
+    <div style="font-size:3rem">🐮 🕵️ 🦊</div>
+    <h1>Vöchter im Kuhstall</h1>
+    <div class="subtitle">Die geheime Jubiläums-Sabotage · 2026</div>
   </header>
 
-  <main id="content">
+  <section id="home" class="card">
+    <h2>🚨 Alarm im Kuhstall!</h2>
+    <p class="intro">Seit Jahren ist der Kuhstall der heimliche Mittelpunkt jeder guten Feier. Doch das können die <strong>Vöchter</strong> nicht länger mit ansehen: Ihre eigene Kirmes soll endlich wieder besser besucht werden! Also haben sich zwei von ihnen undercover unter die Gäste gemischt. Ihr finsterer Plan: mit hinterhältigen Mini-Sabotagen den Kuhstall so aus dem Takt bringen, dass nächstes Jahr alle lieber zur Vöchter Kirmes pilgern.</p>
+    <p class="intro">Zum Glück steht das legendäre <strong>Inkompetenzteam</strong> bereit. Es ist zwar nicht unbedingt kompetent – aber hoch motiviert, Punkte zu sammeln und die beiden Vöchter zu entlarven. Wer sabotiert hier? Und wer ist einfach nur so?</p>
+    <div class="notice"><strong>Das Ziel:</strong> Nach dem Finale tippt jeder auf zwei Vöchter. Die Vöchter gewinnen nur, wenn <strong>beide alle ihre Pflichtmissionen</strong> geschafft haben und <strong>mindestens einer nicht enttarnt</strong> wird. Sonst gewinnt das Inkompetenzteam. Zusätzlich gewinnt das punktbeste Teammitglied die persönliche Inkompetenz-Meisterschaft.</div>
+    <div class="row topline"><button id="newGameBtn">🎩 Spiel vorbereiten</button><button id="resumeBtn" class="secondary hidden">▶ Mein Spiel fortsetzen</button></div>
+  </section>
 
-<!-- HERO -->
-<section class="hero hero--photo" aria-label="Startbereich">
-  <div class="hero__bg" aria-hidden="true"></div>
-  <div class="hero__overlay" aria-hidden="true"></div>
+  <section id="setup" class="card hidden">
+    <h2>🎩 Spiel vorbereiten</h2>
+    <p>Einmalig am Stallmeister-Handy Namen eingeben. Die Webseite verteilt zufällig genau zwei Vöchter und individuelle Missionen. Die persönlichen Zugangslinks danach einzeln weitergeben.</p>
+    <label for="namesInput">Spielernamen (jeweils eine Zeile)</label>
+    <textarea id="namesInput" rows="9" placeholder="Anna&#10;Ben&#10;Clara&#10;David&#10;Emma"></textarea>
+    <div class="row topline"><button id="generateBtn">Rollen auslosen und Links erstellen</button><button id="backBtn" class="secondary">Zurück</button></div>
+    <p id="setupError" class="error" aria-live="polite"></p>
+  </section>
 
-  <div class="container hero__inner">
-    <div class="pill">🌞 Natur • Ruhe • Wohlfühlen</div>
-    <h1>Dein fröhlicher Rückzugsort im Grünen.</h1>
-    <p>
-      Willkommen im <strong>Westzipfelcamp</strong> in <strong>Bocket</strong>.
-      Ein kleiner, offener Platz mit viel Grün – für entspannte Nächte und echte Auszeit.
-    </p>
+  <section id="tickets" class="card hidden">
+    <h2>🎟️ Geheime Spielerzugänge</h2>
+    <div class="notice">Jeder bekommt <strong>nur seinen eigenen Link/QR-Code</strong>. Neue Spielrunden brauchen neu erzeugte Links, damit die Missionen zugeteilt werden. Bitte nicht gemeinsam auf einem Bildschirm alle Zugänge öffnen. Die Links enthalten geheime Rolleninformationen – nicht öffentlich teilen!</div>
+    <div id="ticketList"></div>
+    <button id="openOwnBtn" class="secondary">Eigener Link bereits geöffnet? Zur Startseite</button>
+  </section>
 
-    <div class="hero__cta">
-      <a class="btn" href="#kontakt">Verfügbarkeit anfragen</a>
+  <section id="player" class="hidden">
+    <div class="card">
+      <div class="row between"><div><span class="tag" id="playerRole">Rolle</span><h2 id="playerName" style="margin-top:10px"></h2></div><div class="score" id="playerScore">0 Punkte</div></div>
+      <p id="roleDescription"></p>
+      <div class="notice" id="phaseDescription"></div>
+      <div class="row topline"><button id="phase2Btn" class="secondary">⏩ Phase 2 starten</button><button id="phase3Btn" class="secondary">⏩ Phase 3 starten</button><button id="finalBtn" class="danger">🏁 Finale starten</button></div>
+      <p class="small">Nur auf Ansage des Stallmeisters drücken. Ein Vorwärtssprung ist jederzeit möglich. Erledigte Aufgaben und Punkte bleiben erhalten; unerledigte Aufgaben früherer Phasen verfallen.</p>
     </div>
-  </div>
-</section>
-
-<!-- WESTZIPFELCAMP -->
-<section id="camp" class="section">
-  <div class="container">
-    <div class="section__header">
-      <h2>Westzipfelcamp</h2>
-      <p class="lead"></p>
+    <div id="missionPanel" class="card"><h2>📋 Meine Missionen</h2><div id="missionList"></div></div>
+    <div id="finalPanel" class="card hidden">
+      <h2>🕵️ Wer sind die beiden Vöchter?</h2>
+      <p>Wähle <strong>genau zwei unterschiedliche Personen</strong>. Deine Tipps werden nur auf deinem Gerät gespeichert. Zeige das Ergebnis anschließend dem Stallmeister zur Auszählung.</p>
+      <label for="guess1">Verdacht 1</label><select id="guess1"></select>
+      <label for="guess2">Verdacht 2</label><select id="guess2"></select>
+      <div class="row topline"><button id="saveVoteBtn">Meine Tipps festhalten</button></div>
+      <p id="voteMessage" aria-live="polite"></p>
+      <div id="receipt" class="hidden notice"></div>
+      <div id="voterSummary" class="topline"></div>
     </div>
-
-    <div class="stack">
-      <div class="card camp-text">
-        <p>
-          Klein, ruhig und naturbezogen – hier geht’s ums Ankommen, Durchatmen und das gute Campinggefühl.
-          Bei uns campst du unkompliziert und angenehm: <strong>großzügige Stellflächen für kleinere Wohnmobile bis 8m Länge</strong> im Grünen, ein offenes Platzgefühl
-          und kurze Wege. Für den Alltag vor Ort stehen <strong>Sanitäreinrichtungen</strong> sowie <strong>Duschen</strong> bereit.
-          Wasser kannst du nach Verbrauch nutzen – praktisch zum Auffüllen oder fürs Abspülen.
-        </p>
-
-<p>
-  <strong>Das Westzipfelcamp liegt im westlichsten Zipfel Deutschlands – in ruhiger, naturnaher Lage nahe der niederländischen Grenze.</strong>
-  Hier genießen Sie entspannte Tage abseits vom Trubel und können die besondere Atmosphäre der Region in vollen Zügen erleben.
-</p>
-
-<p>
-  In den umliegenden Orten finden Sie alles für den täglichen Bedarf: Lebensmittelgeschäfte, einen Drogeriemarkt, eine Bäckerei, Metzgerei sowie eine Apotheke.
-  Einen kleinen Supermarkt erreichen Sie direkt im Ort gegenüber der Kirche. Auch kulinarisch hat die Umgebung einiges zu bieten – im Nachbardorf erwartet Sie eine schöne Auswahl an Restaurants und Gastronomie.
-</p>
-
-<p>
-  Die Region rund um Waldfeucht lädt zu <strong>abwechslungsreichen Rad- und Wandertouren</strong> durch die idyllische Landschaft des Westzipfels ein.
-  Entdecken Sie weite Felder, kleine Dörfer und ruhige Wege – ideal für entspannte Ausflüge.
-</p>
-
-        <p>
-          <strong>Hunde sind bei uns herzlich willkommen und kostenfrei.</strong>
-        </p>
-
-        <p>
-          Wer es besonders bequem mag, wählt das <strong>Komfort- oder Premium-Paket</strong>.
-          Und an warmen Tagen gibt’s ein Extra: Ein <strong>Pool</strong> ist <strong>nach Absprache mit dem Eigentümer</strong> nutzbar.
-          So bleibt der Aufenthalt entspannt – genau so, wie Camping sein soll.
-        </p>
-      </div>
-
-      <div class="card card--gallery">
-        <div class="gallery-title">
-          <h3>Einblicke</h3>
-          <div class="gallery-controls">
-            <button class="gbtn" type="button" data-gallery-prev aria-label="Vorheriges Bild">‹</button>
-            <button class="gbtn" type="button" data-gallery-next aria-label="Nächstes Bild">›</button>
-          </div>
-        </div>
-
-<div class="gallery" data-gallery aria-label="Bildergalerie">
-
-  <figure class="slide">
-    <button class="slide__btn" type="button" data-lightbox-open aria-label="Bild im Vollbild öffnen">
-      <img src="assets/1.jpg" alt="Westzipfelcamp – Stellplatz im Grünen" loading="lazy">
-    </button>
-    <figcaption>Stellplatz</figcaption>
-  </figure>
-
-  <figure class="slide">
-    <button class="slide__btn" type="button" data-lightbox-open aria-label="Bild im Vollbild öffnen">
-      <img src="assets/2.jpg" alt="Westzipfelcamp – Poolbereich" loading="lazy">
-    </button>
-    <figcaption>Pool (nach Absprache)</figcaption>
-  </figure>
-
-  <figure class="slide">
-    <button class="slide__btn" type="button" data-lightbox-open aria-label="Bild im Vollbild öffnen">
-      <img src="assets/3.jpg" alt="Westzipfelcamp – Sanitäreinrichtungen" loading="lazy">
-    </button>
-    <figcaption>Sanitäreinrichtungen</figcaption>
-  </figure>
-
-  <figure class="slide">
-    <button class="slide__btn" type="button" data-lightbox-open aria-label="Bild im Vollbild öffnen">
-      <img src="assets/4.jpg" alt="Westzipfelcamp – Sanitäreinrichtungen" loading="lazy">
-    </button>
-    <figcaption>Sanitäreinrichtungen</figcaption>
-  </figure>
-
-  <figure class="slide">
-    <button class="slide__btn" type="button" data-lightbox-open aria-label="Bild im Vollbild öffnen">
-      <img src="assets/5.jpg" alt="Westzipfelcamp – Stellplatz mit viel Grünfläche" loading="lazy">
-    </button>
-    <figcaption>Stellplatz</figcaption>
-  </figure>
-
-  <!-- NEU: 6–9 (alle Stellplatz) -->
-
-  <figure class="slide">
-    <button class="slide__btn" type="button" data-lightbox-open aria-label="Bild im Vollbild öffnen">
-      <img src="assets/6.jpeg" alt="Westzipfelcamp – Stellplatz" loading="lazy">
-    </button>
-    <figcaption>Stellplatz</figcaption>
-  </figure>
-
-  <figure class="slide">
-    <button class="slide__btn" type="button" data-lightbox-open aria-label="Bild im Vollbild öffnen">
-      <img src="assets/7.jpeg" alt="Westzipfelcamp – Stellplatz" loading="lazy">
-    </button>
-    <figcaption>Stellplatz</figcaption>
-  </figure>
-
-  <figure class="slide">
-    <button class="slide__btn" type="button" data-lightbox-open aria-label="Bild im Vollbild öffnen">
-      <img src="assets/8.jpeg" alt="Westzipfelcamp – Stellplatz" loading="lazy">
-    </button>
-    <figcaption>Stellplatz</figcaption>
-  </figure>
-
-  <figure class="slide">
-    <button class="slide__btn" type="button" data-lightbox-open aria-label="Bild im Vollbild öffnen">
-      <img src="assets/9.jpeg" alt="Westzipfelcamp – Stellplatz" loading="lazy">
-    </button>
-    <figcaption>Stellplatz</figcaption>
-  </figure>
-
-</div>
-
-<div class="dots" data-gallery-dots aria-label="Galerie-Navigation"></div>
-
-</div>
-<!-- Ende Einblicke / Galerie -->
-
-
-<!-- Rezensionen -->
-<div class="card card--reviews">
-        <div class="reviews-title">
-          <div class="reviews-title__left">
-            <h3>Rezensionen</h3>
-            <p class="muted reviews-sub">
-              Auszüge aus mittlerweile über 80 5-Sterne-Bewertungen (manuell gepflegt) – weitere Bewertungen auf den Plattformen:
-            </p>
-          </div>
-
-          <div class="reviews-controls">
-            <button class="gbtn" type="button" data-reviews-prev aria-label="Vorherige Rezension">‹</button>
-            <button class="gbtn" type="button" data-reviews-next aria-label="Nächste Rezension">›</button>
-          </div>
-        </div>
-
-        <div class="reviews" data-reviews aria-label="Rezensionen-Slider">
-          <article class="review-slide">
-            <div class="stars" aria-label="5 von 5 Sternen">★★★★★</div>
-            <p class="review-text">„Ein toller Stellplatz mit Blick aufs Feld. Wer Ruhe sucht ist hier absolut richtig. 
-              Das Ehepaar welches den Platz zur Verfügung stellt ist unglaublich freundlich. Sanitäranlagen sauber und geräumig! 
-              Alles was man braucht!“</p>
-            <div class="review-meta">5-Sterne • Park4Night</div>
-          </article>
-
-                    <article class="review-slide">
-            <div class="stars" aria-label="5 von 5 Sternen">★★★★★</div>
-            <p class="review-text">„Vielen Dank an den Betreiber dieses schönen privaten Platzes! Unkomplizierter telefonischer Kontakt vorab, sehr freundlicher Empfang. 
-              Alles vorgefunden, wie beschrieben, ein sauberes Bad für die Gäste, eine schöne Wiese neben einem Feld und es gibt sogar schnelles WLAN - wir hatten einen entspannt ruhigen Aufenthalt hier! 
-              Immer gerne wieder!“</p>
-            <div class="review-meta">5-Sterne • Park4Night</div>
-          </article>
-
-
-          <article class="review-slide">
-            <div class="stars" aria-label="5 von 5 Sternen">★★★★★</div>
-            <p class="review-text">„Klein & persönlich, sehr freundlich. Alles sehr sauber – wer Ruhe sucht, ist hier richtig.“</p>
-            <div class="review-meta">5-Sterne • Auszug</div>
-          </article>
-
-          <article class="review-slide">
-            <div class="stars" aria-label="5 von 5 Sternen">★★★★★</div>
-            <p class="review-text">„Absolut ruhig, super sauber und an alles gedacht. Klare Empfehlung.“</p>
-            <div class="review-meta">5-Sterne • Auszug</div>
-          </article>
-
-          <article class="review-slide">
-            <div class="stars" aria-label="5 von 5 Sternen">★★★★★</div>
-            <p class="review-text">„Wunderschöner Platz – ideal zum Abschalten. Sehr nette Betreiber.“</p>
-            <div class="review-meta">5-Sterne • Auszug</div>
-          </article>
-
-          <article class="review-slide">
-            <div class="stars" aria-label="5 von 5 Sternen">★★★★★</div>
-            <p class="review-text">„Rundum stimmig, entspannte Nacht und freundlicher Empfang.“</p>
-            <div class="review-meta">5-Sterne • Auszug</div>
-          </article>
-
-          <article class="review-slide">
-  <div class="stars" aria-label="5 von 5 Sternen">★★★★★</div>
-
-  <p class="review-text">
-    „Sehr schöner Wiesenstellplatz. Landschaftlich sehr schön gelegen und sehr ruhig.
-    Wir haben drei Nächte bei Familie Wellens verbracht. Die Sanitäreinrichtung war sauber.
-    Strom ist vorhanden. Hunde willkommen und kostenlos. Preis-Leistungs-Verhältnis top.“
-  </p>
-
-  <div class="review-meta">5 Sterne • Google</div>
-</article>
-
-
-<!-- Rezension 6 -->
-<article class="review-slide">
-  <div class="stars" aria-label="5 von 5 Sternen">★★★★★</div>
-
-  <p class="review-text">
-    „Uns hat es sehr, sehr gut gefallen. Alles da, was man fürs Camperglück benötigt.
-    Hund ist auch erlaubt – perfekt. Falls wir mal wieder ins Selfkant kommen,
-    wissen wir, wo wir übernachten. Klare Empfehlung.“
-  </p>
-
-  <div class="review-meta">5 Sterne • Google</div>
-</article>
-
-
-<!-- Rezension 7 -->
-<article class="review-slide">
-  <div class="stars" aria-label="5 von 5 Sternen">★★★★★</div>
-
-  <p class="review-text">
-    „Wir waren am Christi-Himmelfahrt-Wochenende da. Es war einfach herrlich.
-    Sie stehen sehr ruhig und mit Blick auf Felder und Wälder. Die Sanitäranlagen
-    sind modern und sehr sauber. Hier hat man alles, was ein Camperherz braucht.
-    Die Buchung und Platzzuweisung war sehr einfach und unkompliziert.
-    Man kann in der Gegend viel mit dem Fahrrad, aber auch zu Fuß entdecken.
-    Ganz herzlichen Dank an die Betreiber, dass sie uns so ein schönes Plätzchen
-    zur Verfügung stellen. Wir kommen auf jeden Fall wieder.“
-  </p>
-
-  <div class="review-meta">5 Sterne • Google</div>
-</article>
-
-          <!-- Rezension 8 -->
-          <article class="review-slide">
-  <div class="stars" aria-label="5 von 5 Sternen">★★★★★</div>
-
-  <p class="review-text">
-    „Der absolute Tip für alle, die Ruhe und die Schönheit der Natur genießen möchten. Sehr sympathische Gastgeber, alles da, was man so braucht. 
-    Der ideale Startpunkt eines Urlaubs, um wieder zu sich zu finden und den Stress vergessen zu können. Wir kommen gerne wieder.“
-  </p>
-
-  <div class="review-meta">5 Sterne • Google</div>
-</article>
-        
-        </div>
-
-        <div class="dots" data-reviews-dots aria-label="Rezensionen-Navigation"></div>
-
-        <!-- Plattform-Logos -->
-        <div class="platform-logos" aria-label="Bewertungsplattformen">
-          <a class="platform-btn" href="https://park4night.com/de/place/508338" target="_blank" rel="noopener"
-             aria-label="Westzipfelcamp auf park4night ansehen">
-            <img class="platform-logo" src="assets/logos/park4night.png" alt="park4night">
-          </a>
-
-          <a class="platform-btn" href="https://www.stellplatzfuehrer.de/plaetze/listen/alle/34854-westzipfelcamp"
-             target="_blank" rel="noopener" aria-label="Westzipfelcamp auf stellplatzfuehrer.de ansehen">
-            <img class="platform-logo" src="assets/logos/stellplatzfuehrer.png" alt="Stellplatzführer">
-          </a>
-
-          <a class="platform-btn" href="https://www.promobil.de/stellplatz/westzipfelcamp-66aaad1c34c3800008304183.html"
-             target="_blank" rel="noopener" aria-label="Westzipfelcamp auf promobil.de ansehen">
-            <img class="platform-logo" src="assets/logos/promobil.jpg" alt="promobil">
-          </a>
-
-          <a class="platform-btn" href="https://www.campercontact.com/de/deutschland/nordrhein-westfalen/waldfeucht/159146/westzipfelcamp"
-             target="_blank" rel="noopener" aria-label="Westzipfelcamp auf Campercontact ansehen">
-            <img class="platform-logo" src="assets/logos/campercontact.jpg" alt="Campercontact">
-          </a>
-
-          <a class="platform-btn" href="https://maps.app.goo.gl/dP5imqdzkSyQatoF9?g_st=ic"
-             target="_blank" rel="noopener" aria-label="Westzipfelcamp auf Google Maps ansehen">
-            <img class="platform-logo" src="assets/logos/googlemaps.png" alt="Google Maps">
-          </a>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- PREISE -->
-<section id="preise" class="section section--soft">
-  <div class="container">
-    <div class="section__header">
-      <h2>Preise</h2>
-    </div>
-
-    <div class="price-grid">
-      <!-- Basic: jetzt normal wie Komfort (keine Highlight-Umrandung mehr) -->
-      <div class="price">
-        <div class="price__top">
-          <h3>Basic</h3>
-          <span class="price__tag">8€ / Nacht</span>
-        </div>
-        <ul>
-          <li>Stellfläche</li>
-          <li>Zugang zu Sanitäreinrichtungen</li>
-          <li>Preis gilt für 2 Personen</li>
-          <li>jede weitere Person +2,00€ / Nacht</li>
-          <li>+ 1€ pro Nutzung der Dusche</li>
-          <li>+ 1€ pro 100/L Wasser</li>
-          <li>WLAN 1€ / Nacht</li>
-        </ul>
-      </div>
-
-      <div class="price">
-        <div class="price__top">
-          <h3>Komfort</h3>
-          <span class="price__tag">11€ / Nacht</span>
-        </div>
-        <ul>
-          <li>Stellfläche</li>
-          <li>Zugang zu Sanitäreinrichtungen</li>
-          <li>Strom</li>
-          <li>Preis gilt für 2 Personen</li>
-          <li>jede weitere Person +2,00€ / Nacht</li>
-          <li>+ 1€ pro Nutzung der Dusche</li>
-          <li>+ 1€ pro 100/L Wasser</li>
-          <li>WLAN 1€ / Nacht</li>
-        </ul>
-      </div>
-
-      <!-- Premium: grün umrandet + empfohlen -->
-      <div class="price price--premium">
-        <div class="badge" aria-label="Empfohlen">Empfohlen</div>
-
-        <div class="price__top">
-          <h3>Premium</h3>
-          <span class="price__tag">15€ / Nacht</span>
-        </div>
-        <ul>
-          <li>Stellfläche</li>
-          <li>Zugang zu Sanitäreinrichtungen</li>
-          <li>Strom</li>
-          <li>Duschen frei</li>
-          <li>Wassernutzung frei</li>
-          <li>WLAN frei</li>
-          <li>Angebotspreis gilt für 3 Personen</li>
-          <li>jede weitere Person +2,00€ / Nacht</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- KONTAKT -->
-<section id="kontakt" class="section">
-  <div class="container">
-    <div class="section__header">
-      <h2>Kontakt & Anfrage</h2>
-      <p class="lead">Daten eintragen und dann per E-Mail oder WhatsApp senden.</p>
-    </div>
-
-    <div class="contact-grid">
-      <form class="form" id="inquiryForm">
-        <div class="form__row">
-          <label for="name">Name</label>
-          <input id="name" name="name" autocomplete="name" required placeholder="Vor- und Nachname" />
-        </div>
-
-        <div class="form__row">
-          <label for="email">E-Mail</label>
-          <input id="email" name="email" type="email" autocomplete="email" required placeholder="name@mail.de" />
-        </div>
-
-        <div class="form__row two">
-          <div>
-            <label for="from">Anreise</label>
-            <input id="from" name="from" type="date" required />
-          </div>
-          <div>
-            <label for="to">Abreise</label>
-            <input id="to" name="to" type="date" required />
-          </div>
-        </div>
-
-        <div class="form__row">
-          <label for="type">Camping-Paket</label>
-          <select id="type" name="type">
-            <option>Basic</option>
-            <option>Komfort</option>
-            <option>Premium</option>
-          </select>
-        </div>
-
-        <div class="form__row">
-          <label for="message">Nachricht</label>
-          <textarea id="message" name="message" rows="5" placeholder="Anzahl Personen, Reist ein tierischer Freund mit, Wünsche, Fragen, Sonstiges …"></textarea>
-        </div>
-
-        <div class="form-buttons">
-          <button class="btn" type="button" id="emailBtn">Per E-Mail senden</button>
-          <button class="btn btn--whatsapp" type="button" id="whatsappBtn">Per WhatsApp senden</button>
-        </div>
-
-        <p class="fineprint">
-          Beim Klick öffnet sich dein E-Mail-Programm oder WhatsApp mit einer fertigen Anfrage.
-        </p>
-
-        <p class="error" id="formError" aria-live="polite"></p>
-      </form>
-
-      <div class="contact-card">
-        <div class="contact-card__top">
-          <h3>Westzipfelcamp</h3>
-          <p class="muted">Schulstr. 61, 52525 Waldfeucht</p>
-          <p class="muted"> Derzeit ist die Anfahrt, aufgrund einer Baustelle, nur über die Straße "An der Flachsroth" möglich.</p>
-        </div>
-
-        <div class="contact-lines">
-          <div><strong>E-Mail:</strong> <a href="mailto:info@westzipfelcamp.de">info@westzipfelcamp.de</a></div>
-          <div><strong>Telefon:</strong> <a href="tel:+491786065840">01786 065840</a></div>
-        </div>
-
-        <div class="map">
-          <iframe
-            title="Karte (OpenStreetMap)"
-            src="https://www.openstreetmap.org/export/embed.html?bbox=5.995833%2C51.041667%2C6.015833%2C51.061667&amp;layer=mapnik&amp;marker=51.051667%2C6.005833"
-            loading="lazy">
-          </iframe>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer class="footer">
-  <div class="container footer__inner">
-    <div>
-      <div class="footer__brand">Westzipfelcamp</div>
-      <div class="footer__meta">© <span id="year"></span> • Schulstr. 61, 52525 Waldfeucht</div>
-    </div>
-
-    <div class="footer__links">
-      <a href="#" id="impressumLink">Impressum & Datenschutz </a>
-    </div>
-  </div>
-
-  <dialog id="legalDialog" class="dialog">
-    <div class="dialog__inner">
-      <h3 id="legalTitle">Hinweis</h3>
-  <div id="legalText" class="muted">
-
-<h4>Impressum & Datenschutz</h4>
-
-<p>
-Angaben gemäß § 5 TMG
-</p>
-
-<p>
-Guido Wellens<br>
-Schulstr. 61<br>
-52525 Waldfeucht<br>
-Deutschland
-</p>
-
-<p>
-Kontakt:<br>
-Telefon: 01786 065840<br>
-E-Mail: info@westzipfelcamp.de
-</p>
-
-<h4>Haftung für Inhalte</h4>
-
-<p>
-Die Inhalte unserer Seiten wurden mit größter Sorgfalt erstellt. Für die Richtigkeit,
-Vollständigkeit und Aktualität der Inhalte können wir jedoch keine Gewähr übernehmen.
-Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten
-nach den allgemeinen Gesetzen verantwortlich.
-</p>
-
-<h4>Haftung für Links</h4>
-
-<p>
-Unsere Website enthält Links zu externen Webseiten Dritter, auf deren Inhalte wir keinen
-Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen.
-Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der
-Seiten verantwortlich.
-</p>
-
-<h4>Datenschutzerklärung</h4>
-
-<p>
-Der Schutz Ihrer persönlichen Daten ist uns ein besonderes Anliegen. Wir behandeln Ihre
-personenbezogenen Daten vertraulich und entsprechend den gesetzlichen Datenschutzvorschriften
-sowie dieser Datenschutzerklärung.
-</p>
-
-<h4>Hosting</h4>
-
-<p>
-Diese Website wird über GitHub Pages bereitgestellt. Beim Aufruf der Website können durch den
-Hostinganbieter automatisch technische Informationen erfasst werden, beispielsweise
-IP-Adresse, Datum und Uhrzeit des Zugriffs, Browsertyp sowie das verwendete Betriebssystem.
-Diese Daten dienen ausschließlich der technischen Bereitstellung und Sicherheit der Website.
-</p>
-
-<h4>Analyse-Tool</h4>
-
-<p>
-Diese Website verwendet das datenschutzfreundliche Analyse-Tool GoatCounter zur statistischen
-Auswertung der Besucherzugriffe. GoatCounter verwendet keine Cookies und speichert keine
-personenbezogenen Daten. Die Analyse erfolgt anonymisiert.
-</p>
-
-<h4>Kontaktaufnahme</h4>
-
-<p>
-Wenn Sie uns per E-Mail oder über WhatsApp kontaktieren, werden die von Ihnen übermittelten
-Daten ausschließlich zur Bearbeitung Ihrer Anfrage verwendet. Die Verarbeitung erfolgt auf
-Grundlage von Art. 6 Abs. 1 lit. b DSGVO.
-</p>
-
-<h4>Ihre Rechte</h4>
-
-<p>
-Sie haben jederzeit das Recht auf Auskunft über Ihre gespeicherten personenbezogenen Daten,
-deren Herkunft und Empfänger sowie den Zweck der Datenverarbeitung. Außerdem haben Sie ein
-Recht auf Berichtigung, Sperrung oder Löschung dieser Daten.
-</p>
-
-</div>
-          <button class="btn btn--small" id="closeDialog">Schließen</button>
-        </div>
-      </dialog>
-    </footer>
-
-  </main>
-
-  <!-- LIGHTBOX -->
-
-  <dialog id="lightbox" class="lightbox" aria-label="Bild in Vollbild">
-    <button class="lightbox__close" type="button" data-lightbox-close aria-label="Schließen">✕</button>
-    <button class="lightbox__nav lightbox__nav--prev" type="button" data-lightbox-prev aria-label="Vorheriges Bild">‹</button>
-    <button class="lightbox__nav lightbox__nav--next" type="button" data-lightbox-next aria-label="Nächstes Bild">›</button>
-
-<figure class="lightbox__figure">
-  <img id="lightboxImg" alt="" />
-  <figcaption id="lightboxCap"></figcaption>
-</figure>
-
-  </dialog>
-
+  </section>
+
+  <section id="hostResults" class="card hidden">
+    <h2>🏆 Stallmeister-Auswertung</h2>
+    <p>Die Abstimmung und Punktestände werden ohne Backend <strong>nicht automatisch zwischen Handys übertragen</strong>. Trage hier die beiden Kandidaten mit den meisten Stimmen und die Ergebnisse der Vöchter ein.</p>
+    <div id="hostFields"></div>
+    <button id="evaluateBtn">Sieger berechnen</button>
+    <div id="evaluation" class="topline"></div>
+    <details class="topline"><summary>Inkompetenz-Meisterschaft auswerten</summary><p>Trage die Punkte der Teammitglieder ein, wie sie auf deren Handys angezeigt werden.</p><div id="crewScores"></div><button id="rankBtn" class="secondary">Rangliste berechnen</button><div id="ranking"></div></details>
+  </section>
+  <footer>Vöchter im Kuhstall 2026 · Statisch auf GitHub Pages · Ohne Backend</footer>
+</main>
+<script>
+'use strict';
+
+// ============================================================================
+// 1. SPIEL-EINSTELLUNGEN – HIER KANNST DU DAS SPIEL ANPASSEN
+// ============================================================================
+const SETTINGS = {
+  minPlayers: 5,
+  maxPlayers: 10,
+  voechterCount: 2,
+  phases: [1, 2, 3],
+  // Die Punkte gelten nur für das Inkompetenzteam.
+  // Vöchter-Missionen sind Pflichtmissionen und geben keine Ranglistenpunkte.
+};
+
+// ============================================================================
+// 2. MISSIONEN – HIER NEUE AUFGABEN HINZUFÜGEN
+// ============================================================================
+// Jede Mission ist ein Objekt mit:
+// id:    EINDEUTIGE Kennung (nie doppelt verwenden; auch später nicht ändern)
+// phase: 1 = sofort, 2 = nach Ansage bei ~20 Min., 3 = bei ~40 Min.
+// text:  Aufgabentext, der auf dem Handy erscheint
+// points: Punkte für das Inkompetenzteam (nur bei crew-Missionen)
+//
+// WICHTIG: Vöchter müssen ALLE ihre ZUGETEILTEN Missionen erledigen, um gewinnen zu können.
+// Darum sollten ihre Aufgaben machbar und klar überprüfbar sein.
+// Bei jeder Rolle kannst du einfach weitere Zeilen im gleichen Format ergänzen.
+const MISSIONS = {
+
+  // ==========================================================
+  // 🐮 INKOMPETENZTEAM
+  // ==========================================================
+  // Jeder Spieler soll später pro Phase 2 zufällige
+  // Missionen aus diesem Pool erhalten.
+  //
+  // points = Punkte für die persönliche Rangliste.
+  // phase  = 1, 2 oder 3.
+  // id     = Muss für jede Mission eindeutig sein.
+  // ==========================================================
+
+  crew: [
+
+    // --------------------------------------------------------
+    // PHASE 1 – UNAUFFÄLLIGER EINSTIEG
+    // --------------------------------------------------------
+
+    {
+      id: 'c01',
+      phase: 1,
+      points: 10,
+      text: 'Bringe jemanden dazu, eine lustige Geschichte von einer früheren Kuhstall-Feier zu erzählen.'
+    },
+    {
+      id: 'c02',
+      phase: 1,
+      points: 10,
+      text: 'Lass dir von einem anderen Gast einen neuen Kuhstall-Spitznamen geben.'
+    },
+    {
+      id: 'c03',
+      phase: 1,
+      points: 10,
+      text: 'Bringe jemanden dazu, dir sein Lieblings-Metallschild an der Wand zu zeigen.'
+    },
+    {
+      id: 'c04',
+      phase: 1,
+      points: 10,
+      text: 'Finde jemanden, der behauptet, besser Dart spielen zu können als du.'
+    },
+    {
+      id: 'c05',
+      phase: 1,
+      points: 10,
+      text: 'Bringe jemanden dazu, dir zu erzählen, welche alte Spielkonsole seine Lieblingskonsole war.'
+    },
+    {
+      id: 'c06',
+      phase: 1,
+      points: 10,
+      text: 'Lass dir von jemandem erklären, welches Getränk aus dem Kühlschrank er am liebsten mag.'
+    },
+    {
+      id: 'c07',
+      phase: 1,
+      points: 10,
+      text: 'Bringe jemanden dazu, das Wort „Inkompetenz“ in einem normalen Gespräch auszusprechen.'
+    },
+    {
+      id: 'c08',
+      phase: 1,
+      points: 10,
+      text: 'Finde heraus, welcher Gast schon einmal eine besonders peinliche Kirmesgeschichte erlebt hat.'
+    },
+    {
+      id: 'c09',
+      phase: 1,
+      points: 10,
+      text: 'Sorge dafür, dass jemand freiwillig einen Blick in das Konsolenregal wirft.'
+    },
+    {
+      id: 'c10',
+      phase: 1,
+      points: 10,
+      text: 'Bringe jemanden dazu, den alten Hängeschrank ausdrücklich zu erwähnen.'
+    },
+    {
+      id: 'c11',
+      phase: 1,
+      points: 10,
+      text: 'Lass jemanden entscheiden, ob er lieber an der Theke oder an der Dartscheibe stehen würde.'
+    },
+    {
+      id: 'c12',
+      phase: 1,
+      points: 10,
+      text: 'Bringe jemanden dazu, dir zu erzählen, welches Videospiel er früher am häufigsten gespielt hat.'
+    },
+
+    // --------------------------------------------------------
+    // PHASE 2 – MEHR INTERAKTION UND ERSTE VERDÄCHTIGUNGEN
+    // --------------------------------------------------------
+
+    {
+      id: 'c13',
+      phase: 2,
+      points: 15,
+      text: 'Überzeuge jemanden, mit dir eine Runde Dart zu spielen, sofern die Dartscheibe frei ist.'
+    },
+    {
+      id: 'c14',
+      phase: 2,
+      points: 15,
+      text: 'Bringe zwei andere Gäste dazu, über PlayStation gegen Nintendo zu diskutieren.'
+    },
+    {
+      id: 'c15',
+      phase: 2,
+      points: 15,
+      text: 'Sorge dafür, dass jemand ein Metallschild an der Wand laut vorliest.'
+    },
+    {
+      id: 'c16',
+      phase: 2,
+      points: 15,
+      text: 'Bringe jemanden dazu, den Spieleautomaten genauer zu betrachten.'
+    },
+    {
+      id: 'c17',
+      phase: 2,
+      points: 15,
+      text: 'Lass dir von jemandem erklären, wie er den Kuhstall umgestalten würde.'
+    },
+    {
+      id: 'c18',
+      phase: 2,
+      points: 15,
+      text: 'Überzeuge jemanden, dir einen besonders schlechten Witz zu erzählen.'
+    },
+    {
+      id: 'c19',
+      phase: 2,
+      points: 15,
+      text: 'Bringe zwei Gäste dazu, gemeinsam einen Namen für eine neue Kuhstall-Kirmesattraktion zu erfinden.'
+    },
+    {
+      id: 'c20',
+      phase: 2,
+      points: 15,
+      text: 'Sorge dafür, dass jemand freiwillig den gefliesten Innenraum des alten Hängeschranks betrachtet, ohne etwas darin zu verändern.'
+    },
+    {
+      id: 'c21',
+      phase: 2,
+      points: 15,
+      text: 'Bringe jemanden dazu, die Frage zu beantworten, ob der Kuhstall oder die Vöchter Kirmes die bessere Party veranstaltet.'
+    },
+    {
+      id: 'c22',
+      phase: 2,
+      points: 15,
+      text: 'Lass dir von jemandem erklären, warum die Garderobe an ihrem aktuellen Platz gut oder schlecht aufgehoben ist.'
+    },
+    {
+      id: 'c23',
+      phase: 2,
+      points: 15,
+      text: 'Überzeuge jemanden, dir seinen besten Tipp für einen Dart-Anfänger zu geben.'
+    },
+    {
+      id: 'c24',
+      phase: 2,
+      points: 15,
+      text: 'Bringe mindestens zwei Gäste dazu, sich auf das beste alte Konsolenspiel zu einigen.'
+    },
+
+    // --------------------------------------------------------
+    // PHASE 3 – DAS FINALE RÜCKT NÄHER
+    // --------------------------------------------------------
+
+    {
+      id: 'c25',
+      phase: 3,
+      points: 20,
+      text: 'Bringe mindestens drei Gäste dazu, gemeinsam einen Kuhstall-Schlachtruf zu erfinden.'
+    },
+    {
+      id: 'c26',
+      phase: 3,
+      points: 20,
+      text: 'Überzeuge zwei Gäste, dir jeweils einen Verdächtigen für die Vöchter-Rolle zu nennen.'
+    },
+    {
+      id: 'c27',
+      phase: 3,
+      points: 20,
+      text: 'Bringe jemanden dazu, vor mindestens zwei anderen Gästen eine kurze Lobrede auf den Kuhstall zu halten.'
+    },
+    {
+      id: 'c28',
+      phase: 3,
+      points: 20,
+      text: 'Sorge dafür, dass mindestens drei Personen über den größten Kuhstall-Skandal diskutieren, den sie sich vorstellen können.'
+    },
+    {
+      id: 'c29',
+      phase: 3,
+      points: 20,
+      text: 'Bringe zwei Gäste dazu, sich gegenseitig einen Kuhstall-Spitznamen zu geben.'
+    },
+    {
+      id: 'c30',
+      phase: 3,
+      points: 20,
+      text: 'Überzeuge jemanden, einen anderen Gast zu einem freiwilligen Dart-Duell herauszufordern.'
+    },
+    {
+      id: 'c31',
+      phase: 3,
+      points: 20,
+      text: 'Bringe jemanden dazu, zu erklären, welches der Metallschilder am besten zur Kuhstall-Jubiläumsfeier passt.'
+    },
+    {
+      id: 'c32',
+      phase: 3,
+      points: 20,
+      text: 'Sorge dafür, dass mindestens drei Gäste gemeinsam ein neues Motto für den Kuhstall vorschlagen.'
+    },
+    {
+      id: 'c33',
+      phase: 3,
+      points: 20,
+      text: 'Bringe jemanden dazu, eine Theorie aufzustellen, warum die Vöchter den Kuhstall sabotieren wollen.'
+    },
+    {
+      id: 'c34',
+      phase: 3,
+      points: 20,
+      text: 'Überzeuge zwei Gäste, sich auf die beste Attraktion einer perfekten Kirmes zu einigen.'
+    },
+    {
+      id: 'c35',
+      phase: 3,
+      points: 20,
+      text: 'Bringe jemanden dazu, einen anderen Gast ausdrücklich als „verdächtig“ zu bezeichnen.'
+    },
+    {
+      id: 'c36',
+      phase: 3,
+      points: 20,
+      text: 'Sorge dafür, dass mindestens drei Gäste gemeinsam eine absurde neue Kuhstall-Regel erfinden.'
+    }
+
+  ],
+
+  // ==========================================================
+  // 🦊 DIE BEIDEN VÖCHTER
+  // ==========================================================
+  // Jeder Vöchter soll später pro Phase 1 zufällige
+  // Pflichtmission erhalten.
+  //
+  // Beide müssen ihre jeweils 3 zugeteilten Missionen
+  // erfüllen, damit die Vöchter gewinnen können.
+  //
+  // Vöchter erhalten keine persönlichen Ranglistenpunkte.
+  // ==========================================================
+
+  voechter: [
+
+    // --------------------------------------------------------
+    // PHASE 1 – VERDECKTE STICHELEIEN
+    // --------------------------------------------------------
+
+    {
+      id: 'v01',
+      phase: 1,
+      text: 'Bringe jemanden dazu, die Vöchter Kirmes von sich aus als Gesprächsthema aufzugreifen.'
+    },
+    {
+      id: 'v02',
+      phase: 1,
+      text: 'Überzeuge jemanden, mindestens einen Grund zu nennen, warum die Vöchter Kirmes besser als der Kuhstall sein könnte.'
+    },
+    {
+      id: 'v03',
+      phase: 1,
+      text: 'Bringe jemanden dazu, sich darüber zu beschweren, dass im Kuhstall irgendetwas verbessert werden müsste.'
+    },
+    {
+      id: 'v04',
+      phase: 1,
+      text: 'Lass jemanden die Frage stellen, warum die Vöchter eigentlich nicht zur Kuhstall-Feier eingeladen wurden.'
+    },
+    {
+      id: 'v05',
+      phase: 1,
+      text: 'Bringe jemanden dazu, das Wort „Sabotage“ auszusprechen, ohne selbst dieses Wort zu verwenden.'
+    },
+    {
+      id: 'v06',
+      phase: 1,
+      text: 'Überzeuge jemanden davon, dass auf einer richtigen Kirmes mehr los ist als im Kuhstall.'
+    },
+
+    // --------------------------------------------------------
+    // PHASE 2 – DIE SABOTAGE WIRD DEUTLICHER
+    // --------------------------------------------------------
+
+    {
+      id: 'v07',
+      phase: 2,
+      text: 'Bringe jemanden dazu, vor einem weiteren Gast laut zu behaupten, dass die Vöchter Kirmes die bessere Veranstaltung sei.'
+    },
+    {
+      id: 'v08',
+      phase: 2,
+      text: 'Sorge dafür, dass zwei Gäste darüber diskutieren, ob der Kuhstall einen neuen Namen braucht.'
+    },
+    {
+      id: 'v09',
+      phase: 2,
+      text: 'Bringe jemanden dazu, den Spieleautomaten als mögliche Hauptattraktion einer Vöchter Kirmes vorzuschlagen.'
+    },
+    {
+      id: 'v10',
+      phase: 2,
+      text: 'Überzeuge jemanden, mindestens zwei Dinge aufzuzählen, die bei einer Kirmes besser funktionieren als bei einer Kuhstall-Feier.'
+    },
+    {
+      id: 'v11',
+      phase: 2,
+      text: 'Sorge dafür, dass jemand ernsthaft oder scherzhaft vorschlägt, ein Metallschild mit Werbung für die Vöchter Kirmes aufzuhängen.'
+    },
+    {
+      id: 'v12',
+      phase: 2,
+      text: 'Bringe jemanden dazu, vor mindestens einem weiteren Gast zu behaupten, dass die Kuhstall-Crew inkompetent sei.'
+    },
+
+    // --------------------------------------------------------
+    // PHASE 3 – DER LETZTE ANGRIFF
+    // --------------------------------------------------------
+
+    {
+      id: 'v13',
+      phase: 3,
+      text: 'Bringe mindestens zwei Gäste dazu, gemeinsam einen Werbespruch für die Vöchter Kirmes zu erfinden.'
+    },
+    {
+      id: 'v14',
+      phase: 3,
+      text: 'Sorge dafür, dass jemand öffentlich vorschlägt, die nächste Feier lieber auf der Vöchter Kirmes zu veranstalten.'
+    },
+    {
+      id: 'v15',
+      phase: 3,
+      text: 'Überzeuge zwei Gäste, sich auf mindestens einen Vorteil der Vöchter Kirmes gegenüber dem Kuhstall zu einigen.'
+    },
+    {
+      id: 'v16',
+      phase: 3,
+      text: 'Bringe jemanden dazu, einen anderen Gast scherzhaft als möglichen Saboteur der Vöchter zu beschuldigen.'
+    },
+    {
+      id: 'v17',
+      phase: 3,
+      text: 'Sorge dafür, dass mindestens zwei Gäste über die Frage diskutieren, ob die Vöchter Kirmes nächstes Jahr besser besucht sein wird.'
+    },
+    {
+      id: 'v18',
+      phase: 3,
+      text: 'Bringe jemanden dazu, eine kurze, spontane Werbeansage für die Vöchter Kirmes zu machen.'
+    }
+
+  ]
+
+};
+
+// ============================================================================
+// 3. GRUNDLEGENDE HILFSFUNKTIONEN
+// ============================================================================
+const $ = id => document.getElementById(id);
+const STORAGE_KEY = 'voechter-im-kuhstall-v1';
+const HOST_KEY = 'voechter-im-kuhstall-host-v1';
+let state = null;
+let hostData = null;
+
+function showScreen(id) {
+  ['home', 'setup', 'tickets', 'player', 'hostResults'].forEach(name => $(name).classList.toggle('hidden', name !== id));
+}
+function safeText(value) { return String(value ?? ''); }
+function saveState() { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
+function saveHost() { localStorage.setItem(HOST_KEY, JSON.stringify(hostData)); }
+function readJson(key) { try { return JSON.parse(localStorage.getItem(key)); } catch { return null; } }
+function makeId() { return (crypto.randomUUID ? crypto.randomUUID() : Date.now().toString(36) + Math.random().toString(36).slice(2)); }
+function encodeTicket(data) {
+  const bytes = new TextEncoder().encode(JSON.stringify(data));
+  let binary = ''; bytes.forEach(b => binary += String.fromCharCode(b));
+  return btoa(binary).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+}
+function decodeTicket(encoded) {
+  const base64 = encoded.replace(/-/g, '+').replace(/_/g, '/');
+  const binary = atob(base64);
+  return JSON.parse(new TextDecoder().decode(Uint8Array.from(binary, c => c.charCodeAt(0))));
+}
+function makeButton(label, callback, css = 'secondary') {
+  const btn = document.createElement('button'); btn.textContent = label; btn.className = css; btn.addEventListener('click', callback); return btn;
+}
+function addText(parent, tag, text, className = '') {
+  const node = document.createElement(tag); node.textContent = text; if (className) node.className = className; parent.appendChild(node); return node;
+}
+function randomInt(max) {
+  const bytes = new Uint32Array(1); crypto.getRandomValues(bytes);
+  return Math.floor((bytes[0] / 4294967296) * max);
+}
+function shuffle(array) {
+  const result = [...array];
+  for (let i = result.length - 1; i > 0; i--) { const j = randomInt(i + 1); [result[i], result[j]] = [result[j], result[i]]; }
+  return result;
+}
+
+// ============================================================================
+// 3a. ZUFÄLLIGE MISSIONEN – ZUTEILUNG BEIM ERSTELLEN DER SPIELERLINKS
+// ============================================================================
+// Die Zuteilung erfolgt zentral auf dem Stallmeister-Handy und wird im
+// persönlichen Spielerlink mitgegeben. So bekommen die beiden Vöchter
+// garantiert unterschiedliche Missionen pro Phase.
+//
+// Crew:     ALLE Missionen je Phase, individuell gemischt
+// Vöchter:  1 Mission pro Phase (= 3 Pflichtmissionen insgesamt)
+//
+// Jedes Crewmitglied erhält alle Missionen in eigener Reihenfolge.
+// Die Vöchter erhalten je eine unterschiedliche Pflichtmission pro Phase.
+function assignMissionsToPlayers(players) {
+  const result = players.map(player => ({ ...player, assignedMissions: [] }));
+
+  // Alle Crew-Missionen pro Phase zufällig sortieren. Neue Missionen im
+  // MISSIONS-Pool werden bei jeder NEUEN Runde automatisch mitgenommen.
+  for (const member of result.filter(player => player.role === 'crew')) {
+    for (const phase of SETTINGS.phases) {
+      const pool = MISSIONS.crew.filter(mission => mission.phase === phase);
+      member.assignedMissions.push(...shuffle(pool).map(mission => mission.id));
+    }
+  }
+
+  // Vöchter: pro Phase eine Pflichtmission, ohne Überschneidung der beiden.
+  const voechter = shuffle(result.filter(player => player.role === 'voechter'));
+  for (const phase of SETTINGS.phases) {
+    const pool = shuffle(MISSIONS.voechter.filter(mission => mission.phase === phase));
+    if (pool.length < voechter.length) {
+      throw new Error(`Zu wenige Vöchter-Missionen in Phase ${phase}.`);
+    }
+    voechter.forEach((member, index) => member.assignedMissions.push(pool[index].id));
+  }
+  return result;
+}
+
+// Reihenfolge aus dem persönlichen Ticket beibehalten (nicht Pool-Reihenfolge).
+function getPlayerMissions() {
+  if (!state || !Array.isArray(state.assignedMissions)) return [];
+  const lookup = new Map(MISSIONS[state.role].map(mission => [mission.id, mission]));
+  return state.assignedMissions.map(id => lookup.get(id)).filter(Boolean);
+}
+
+// Ältere Crew-Links mit nur sechs Missionen ergänzen wir einmalig.
+// Bereits erledigte Aufgaben und die bisherige Reihenfolge bleiben erhalten.
+function upgradeCrewMissions(ids) {
+  const result = Array.isArray(ids) ? [...new Set(ids)] : [];
+  for (const phase of SETTINGS.phases) {
+    const existing = new Set(result);
+    const missing = shuffle(MISSIONS.crew.filter(m => m.phase === phase && !existing.has(m.id)));
+    // Fehlende Aufgaben werden hinter den vorhandenen Aufgaben ihrer Phase
+    // eingefügt, damit die Phasen weiterhin korrekt sortiert sind.
+    const last = result.reduce((pos, id, i) =>
+      MISSIONS.crew.some(m => m.id === id && m.phase === phase) ? i : pos, -1);
+    if (last >= 0) result.splice(last + 1, 0, ...missing.map(m => m.id));
+    else {
+      const next = result.findIndex(id => MISSIONS.crew.some(m => m.id === id && m.phase > phase));
+      result.splice(next < 0 ? result.length : next, 0, ...missing.map(m => m.id));
+    }
+  }
+  return result;
+}
+
+// ============================================================================
+// 4. SPIEL VORBEREITEN: NAMEN, ZUFALLSROLLEN, PERSÖNLICHE LINKS
+// ============================================================================
+function generateGame() {
+  const names = $('namesInput').value.split(/\r?\n/).map(s => s.trim()).filter(Boolean);
+  const normalized = names.map(s => s.toLocaleLowerCase('de'));
+  if (names.length < SETTINGS.minPlayers || names.length > SETTINGS.maxPlayers) {
+    $('setupError').textContent = `Bitte ${SETTINGS.minPlayers} bis ${SETTINGS.maxPlayers} Namen eingeben.`; return;
+  }
+  if (new Set(normalized).size !== names.length) {
+    $('setupError').textContent = 'Jeder Name darf nur einmal vorkommen.'; return;
+  }
+  $('setupError').textContent = '';
+  if (!confirm('Neue Rollen auslosen? Bereits vorhandene Stallmeister-Daten auf diesem Gerät werden ersetzt.')) return;
+  const roles = shuffle([...Array(SETTINGS.voechterCount).fill('voechter'), ...Array(names.length - SETTINGS.voechterCount).fill('crew')]);
+  const gameId = makeId();
+  try {
+    const players = names.map((name, i) => ({ id: `p${i+1}`, name, role: roles[i] }));
+    hostData = { gameId, players: assignMissionsToPlayers(players) };
+  } catch (error) {
+    $('setupError').textContent = error.message;
+    return;
+  }
+  saveHost(); renderTickets(); showScreen('tickets');
+}
+function ticketUrl(player) {
+  const ticket = { gameId: hostData.gameId, playerId: player.id, name: player.name, role: player.role, assignedMissions: player.assignedMissions, players: hostData.players.map(p => ({ id: p.id, name: p.name })) };
+  const url = new URL(window.location.href);
+  url.search = ''; url.hash = 'ticket=' + encodeTicket(ticket);
+  return url.toString();
+}
+function ensureHostMissions() {
+  if (!hostData || !Array.isArray(hostData.players)) return;
+  // Bestehende Spielrunden aus der alten Version hatten noch keine Zuteilung.
+  // Bei der ersten erneuten Anzeige der Links einmalig für alle verteilen.
+  if (hostData.players.some(p => !Array.isArray(p.assignedMissions))) {
+    hostData.players = assignMissionsToPlayers(hostData.players);
+    saveHost();
+  }
+  // Bereits angelegte Crew-Tickets einmalig auf den vollen Pool erweitern.
+  let changed = false;
+  for (const player of hostData.players) {
+    if (player.role !== 'crew') continue;
+    const expanded = upgradeCrewMissions(player.assignedMissions);
+    if (expanded.length !== player.assignedMissions.length) {
+      player.assignedMissions = expanded;
+      changed = true;
+    }
+  }
+  if (changed) saveHost();
+}
+function renderTickets() {
+  ensureHostMissions();
+  const list = $('ticketList'); list.replaceChildren();
+  hostData.players.forEach((player, index) => {
+    const box = document.createElement('div'); box.className = 'ticket';
+    addText(box, 'h3', `${index+1}. ${player.name}`);
+    const url = ticketUrl(player);
+    const qr = document.createElement('div'); qr.className = 'qr'; box.appendChild(qr);
+    if (window.QRCode) { new QRCode(qr, { text: url, width: 160, height: 160, correctLevel: QRCode.CorrectLevel.L }); }
+    else addText(qr, 'p', 'QR-Code-Bibliothek nicht geladen. Link funktioniert trotzdem.', 'small');
+    const actions = document.createElement('div'); actions.className = 'row';
+    actions.appendChild(makeButton('🔗 Persönlichen Link kopieren', async () => {
+      try { await navigator.clipboard.writeText(url); alert(`Link für ${player.name} kopiert.`); }
+      catch { prompt('Link manuell kopieren:', url); }
+    }));
+    actions.appendChild(makeButton('📱 Link öffnen', () => window.open(url, '_blank', 'noopener')));
+    box.appendChild(actions); list.appendChild(box);
+  });
+  const end = document.createElement('div'); end.className = 'topline';
+  end.appendChild(makeButton('🏆 Zur Stallmeister-Auswertung', () => { renderHostResults(); showScreen('hostResults'); }));
+  list.appendChild(end);
+}
+
+// ============================================================================
+// 5. PERSÖNLICHES SPIEL LADEN UND LOKAL SPEICHERN
+// ============================================================================
+function loadTicketFromUrl() {
+  const match = location.hash.match(/^#ticket=(.+)$/);
+  if (!match) return false;
+  try {
+    const ticket = decodeTicket(match[1]);
+    if (!ticket.gameId || !ticket.playerId || !['crew', 'voechter'].includes(ticket.role) || !Array.isArray(ticket.players)) throw Error('Ungültiges Ticket');
+    // Alte persönliche Links enthalten keine assignedMissions. Statt sie
+    // abzulehnen, können sie mit einer lokalen Zufallsauswahl weiterlaufen.
+    // Für garantiert unterschiedliche Vöchter-Missionen bitte neue Links
+    // vom Stallmeister erzeugen lassen.
+    if (!Array.isArray(ticket.assignedMissions)) {
+      const oldState = readJson(STORAGE_KEY);
+      ticket.assignedMissions = oldState?.gameId === ticket.gameId &&
+        oldState?.playerId === ticket.playerId &&
+        Array.isArray(oldState.assignedMissions)
+        ? oldState.assignedMissions
+        : assignMissionsToPlayers([{ id: ticket.playerId, role: ticket.role }])[0].assignedMissions;
+    }
+    if (ticket.role === 'crew') {
+      ticket.assignedMissions = upgradeCrewMissions(ticket.assignedMissions);
+    }
+    const existing = readJson(STORAGE_KEY);
+    if (existing && existing.gameId === ticket.gameId && existing.playerId === ticket.playerId) {
+      state = { ...existing, assignedMissions: ticket.assignedMissions };
+      // Alte, nicht mehr zugeteilte Erfolge nicht weiterzählen.
+      state.done = (state.done || []).filter(id => state.assignedMissions.includes(id));
+    } else {
+      state = { ...ticket, phase: 1, done: [], vote: null };
+    }
+    saveState();
+    history.replaceState(null, '', location.pathname + location.search);
+    return true;
+  } catch (err) { console.error('Spielerlink-Fehler:', err); alert('Der Spielerlink konnte nicht gelesen werden: ' + (err?.message || 'Unbekannter Fehler') + '. Bitte den vollständigen Link erneut öffnen.'); return false; }
+}
+function restorePlayer() {
+  const stored = readJson(STORAGE_KEY);
+  if (!stored || !stored.gameId || !stored.playerId || !Array.isArray(stored.assignedMissions)) return false;
+  state = stored;
+  if (state.role === 'crew') {
+    state.assignedMissions = upgradeCrewMissions(state.assignedMissions);
+    saveState();
+  }
+  return true;
+}
+function renderPlayer() {
+  if (!state) return;
+  showScreen('player');
+  const isCrew = state.role === 'crew';
+  $('playerName').textContent = state.name;
+  $('playerRole').textContent = isCrew ? '🐮 Inkompetenzteam' : '🦊 Vöchter';
+  $('roleDescription').textContent = isCrew
+    ? 'Sammle persönliche Punkte und halte Ausschau nach den beiden Vöchtern. Wer aus dem Inkompetenzteam die meisten Punkte erreicht, wird Inkompetenz-Champion!'
+    : 'Pssst! Du bist einer der beiden Vöchter. Erledige ALLE deine Pflichtmissionen und sorge dafür, dass mindestens einer von euch nicht enttarnt wird.';
+  const missions = getPlayerMissions();
+  const done = missions.filter(m => state.done.includes(m.id));
+  const points = isCrew ? done.reduce((sum, m) => sum + m.points, 0) : 0;
+  $('playerScore').textContent = isCrew ? `${points} Punkte` : `${done.length}/${missions.length} Pflicht`;
+  $('phaseDescription').textContent = state.phase === 4
+    ? '🏁 Das Finale läuft. Missionen können nicht mehr abgeschlossen werden.'
+    : isCrew
+      ? `Phase ${state.phase} läuft. Du siehst immer nur die nächste offene Mission. Unerledigte Aufgaben aus früheren Phasen verfallen beim Phasenwechsel.`
+      : `Phase ${state.phase} läuft. Alle Aufgaben bis einschließlich Phase ${state.phase} sind freigeschaltet.`;
+  $('phase2Btn').disabled = state.phase >= 2;
+  $('phase3Btn').disabled = state.phase >= 3;
+  $('finalBtn').disabled = state.phase === 4;
+  $('missionPanel').classList.toggle('hidden', state.phase === 4);
+  $('finalPanel').classList.toggle('hidden', state.phase !== 4);
+  if (state.phase !== 4) renderMissions(); else renderFinal();
+}
+function renderMissions() {
+  const list = $('missionList'); list.replaceChildren();
+  const missions = getPlayerMissions();
+
+  if (state.role === 'crew') {
+    // Nur EINE offene Mission der AKTUELLEN Phase anzeigen.
+    // Unerledigte Aufgaben früherer Phasen werden nicht mehr angeboten.
+    const next = missions.find(mission =>
+      mission.phase === state.phase && !state.done.includes(mission.id));
+    const currentPhaseMissions = missions.filter(mission => mission.phase === state.phase);
+    const completed = currentPhaseMissions.filter(mission => state.done.includes(mission.id)).length;
+    addText(list, 'p', `Phase ${state.phase}: ${completed} von ${currentPhaseMissions.length} Missionen erledigt.`, 'small');
+
+    if (!next) {
+      const hasLocked = missions.some(mission => mission.phase > state.phase);
+      addText(list, 'p', hasLocked
+        ? '🎉 Alle Missionen dieser Phase geschafft! Warte auf die nächste Phase.'
+        : '🏆 Alle Missionen geschafft! Warte auf das Finale.');
+      return;
+    }
+
+    const box = document.createElement('div'); box.className = 'mission';
+    addText(box, 'span', `Phase ${next.phase} · ${next.points} Punkte`, 'tag');
+    addText(box, 'p', next.text);
+    box.appendChild(makeButton('✓ Mission erledigt – nächste anzeigen', () => {
+      if (state.phase === 4 || state.done.includes(next.id)) return;
+      state.done.push(next.id);
+      saveState(); renderPlayer();
+    }, ''));
+    list.appendChild(box);
+    return;
+  }
+
+  // Vöchter behalten ihre drei individuell zugelosten Pflichtmissionen.
+  missions.forEach(mission => {
+    const available = mission.phase <= state.phase;
+    const completed = state.done.includes(mission.id);
+    const box = document.createElement('div'); box.className = 'mission' + (completed ? ' done' : '');
+    addText(box, 'span', `Phase ${mission.phase} · Pflichtmission`, 'tag');
+    addText(box, 'p', available ? mission.text : '🔒 Diese geheime Mission wird erst in Phase ' + mission.phase + ' enthüllt.');
+    if (available) {
+      box.appendChild(makeButton(completed ? '✓ Erledigt – zurücknehmen' : '✓ Mission erledigt', () => {
+        if (state.done.includes(mission.id)) state.done = state.done.filter(id => id !== mission.id);
+        else state.done.push(mission.id);
+        saveState(); renderPlayer();
+      }, completed ? 'secondary' : ''));
+    }
+    list.appendChild(box);
+  });
+}
+function advancePhase(target) {
+  if (!state || target <= state.phase) return;
+  const label = target === 4 ? 'das Finale starten und alle offenen Missionen schließen' : `zu Phase ${target} springen`;
+  if (!confirm(`Hat der Stallmeister es angesagt? Möchtest du wirklich ${label}?`)) return;
+  state.phase = target; saveState(); renderPlayer();
+}
+
+// ============================================================================
+// 6. FINALE: ZWEI VERDÄCHTIGE WÄHLEN UND ERGEBNIS VORZEIGEN
+// ============================================================================
+function renderFinal() {
+  const players = state.players.filter(p => p.id !== state.playerId);
+  ['guess1', 'guess2'].forEach(id => {
+    const select = $(id); select.replaceChildren();
+    const blank = document.createElement('option'); blank.value = ''; blank.textContent = 'Person auswählen …'; select.appendChild(blank);
+    players.forEach(p => { const option = document.createElement('option'); option.value = p.id; option.textContent = p.name; select.appendChild(option); });
+  });
+  if (state.vote) { $('guess1').value = state.vote[0]; $('guess2').value = state.vote[1]; }
+  $('voterSummary').replaceChildren();
+  if (state.role === 'voechter') {
+    const missions = getPlayerMissions();
+    const done = missions.filter(m => state.done.includes(m.id)).length;
+    addText($('voterSummary'), 'p', `Dein Pflichtmissionsstatus: ${done} von ${missions.length} erledigt. Zeige diesen Status dem Stallmeister bei der Auswertung.`);
+  } else {
+    const score = getPlayerMissions().filter(m => state.done.includes(m.id)).reduce((s,m)=>s+m.points,0);
+    addText($('voterSummary'), 'p', `Dein Endpunktestand: ${score}. Zeige ihn dem Stallmeister für die Inkompetenz-Rangliste.`);
+  }
+  renderReceipt();
+}
+function saveVote() {
+  const a = $('guess1').value, b = $('guess2').value;
+  if (!a || !b || a === b) { $('voteMessage').textContent = 'Bitte zwei unterschiedliche Personen auswählen.'; return; }
+  state.vote = [a,b]; saveState(); $('voteMessage').textContent = 'Deine Tipps wurden auf diesem Handy gespeichert.'; renderReceipt();
+}
+function renderReceipt() {
+  $('receipt').classList.toggle('hidden', !state.vote);
+  if (!state.vote) return;
+  const names = state.vote.map(id => state.players.find(p => p.id === id)?.name || '?');
+  $('receipt').textContent = `${state.name} tippt auf: ${names.join(' und ')}. Bitte dem Stallmeister vorzeigen.`;
+}
+
+// ============================================================================
+// 7. STALLMEISTER: STIMMEN MANUELL AUSZÄHLEN, SIEG UND RANGLISTE
+// ============================================================================
+// WICHTIG: Ohne Server kann der Stallmeister keine anderen Handys auslesen.
+// Die beiden Kandidaten mit den meisten Stimmen werden hier eingetragen.
+// Bei Gleichstand um Platz 2: Stichwahl durchführen, bevor ihr auswertet.
+function renderHostResults() {
+  if (!hostData) return;
+  const fields = $('hostFields'); fields.replaceChildren();
+  addText(fields, 'h3', '1. Die zwei meistgewählten Verdächtigen');
+  ['suspectA','suspectB'].forEach((id, i) => {
+    const label = document.createElement('label'); label.htmlFor = id; label.textContent = `Verdächtiger ${i+1}`; fields.appendChild(label);
+    const select = document.createElement('select'); select.id = id;
+    const empty = document.createElement('option'); empty.value = ''; empty.textContent = 'Bitte wählen'; select.appendChild(empty);
+    hostData.players.forEach(p => { const opt = document.createElement('option'); opt.value = p.id; opt.textContent = p.name; select.appendChild(opt); });
+    fields.appendChild(select);
+  });
+  addText(fields, 'h3', '2. Pflichtmissionen der beiden Vöchter');
+  hostData.players.filter(p => p.role === 'voechter').forEach(p => {
+    const label = document.createElement('label'); label.className = 'choice';
+    const input = document.createElement('input'); input.type = 'checkbox'; input.id = `complete-${p.id}`;
+    label.appendChild(input); addText(label, 'span', `${p.name}: ALLE Pflichtmissionen erledigt`); fields.appendChild(label);
+  });
+  const scores = $('crewScores'); scores.replaceChildren();
+  hostData.players.filter(p => p.role === 'crew').forEach(p => {
+    const label = document.createElement('label'); label.htmlFor = `score-${p.id}`; label.textContent = p.name; scores.appendChild(label);
+    const input = document.createElement('input'); input.type = 'number'; input.min = '0'; input.step = '1'; input.value = '0'; input.id = `score-${p.id}`; scores.appendChild(input);
+  });
+}
+function evaluate() {
+  const a = $('suspectA').value, b = $('suspectB').value;
+  const result = $('evaluation'); result.replaceChildren();
+  if (!a || !b || a === b) { addText(result, 'p', 'Bitte zwei unterschiedliche Verdächtige eintragen.', 'error'); return; }
+  const voechter = hostData.players.filter(p => p.role === 'voechter');
+  const allDone = voechter.every(p => $(`complete-${p.id}`).checked);
+  const bothCaught = voechter.every(p => [a,b].includes(p.id));
+  const win = allDone && !bothCaught;
+  addText(result, 'h2', win ? '🦊 Die Vöchter gewinnen!' : '🐮 Das Inkompetenzteam gewinnt!');
+  addText(result, 'p', `Vöchter: ${voechter.map(p=>p.name).join(' und ')}.`);
+  addText(result, 'p', `Alle Vöchter-Pflichtmissionen geschafft: ${allDone ? 'Ja' : 'Nein'}. Beide Vöchter enttarnt: ${bothCaught ? 'Ja' : 'Nein'}.`);
+}
+function rankCrew() {
+  const list = hostData.players.filter(p => p.role === 'crew').map(p => ({ name:p.name, points:Math.max(0,Number($(`score-${p.id}`).value)||0) })).sort((a,b)=>b.points-a.points);
+  const node = $('ranking'); node.replaceChildren();
+  list.forEach((p,i) => addText(node,'p',`${i+1}. ${p.name} – ${p.points} Punkte${i===0?' 🏆':''}`));
+}
+
+// ============================================================================
+// 8. BUTTONS VERKNÜPFEN UND SPIEL STARTEN
+// ============================================================================
+$('newGameBtn').addEventListener('click', () => showScreen('setup'));
+$('backBtn').addEventListener('click', () => showScreen('home'));
+$('generateBtn').addEventListener('click', generateGame);
+$('openOwnBtn').addEventListener('click', () => showScreen('home'));
+$('resumeBtn').addEventListener('click', renderPlayer);
+$('phase2Btn').addEventListener('click', () => advancePhase(2));
+$('phase3Btn').addEventListener('click', () => advancePhase(3));
+$('finalBtn').addEventListener('click', () => advancePhase(4));
+$('saveVoteBtn').addEventListener('click', saveVote);
+$('evaluateBtn').addEventListener('click', evaluate);
+$('rankBtn').addEventListener('click', rankCrew);
+
+hostData = readJson(HOST_KEY);
+if (loadTicketFromUrl()) renderPlayer();
+else if (restorePlayer()) { $('resumeBtn').classList.remove('hidden'); showScreen('home'); }
+else showScreen('home');
+// Ein Stallmeister kann seine gespeicherten Zugänge über die Setup-Seite erneut anzeigen.
+if (hostData) {
+  const btn = makeButton('🎟️ Vorhandene Spielerlinks anzeigen', () => { renderTickets(); showScreen('tickets'); }, 'secondary');
+  $('home').querySelector('.topline').appendChild(btn);
+}
+</script>
 </body>
 </html>
