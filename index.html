@@ -70,7 +70,7 @@
     <div id="evaluation" class="topline"></div>
     <details class="topline"><summary>Inkompetenz-Meisterschaft auswerten</summary><p>Trage die Punkte der Teammitglieder ein, wie sie auf deren Handys angezeigt werden.</p><div id="crewScores"></div><button id="rankBtn" class="secondary">Rangliste berechnen</button><div id="ranking"></div></details>
   </section>
-  <footer>Vöchter im Kuhstall 2026 · Statisch auf GitHub Pages · Ohne Backend</footer>
+  <footer>Vöchter im Kuhstall 2026 · Version 2.3 (Einzelmissionen pro Phase) · Ohne Backend</footer>
 </main>
 <script>
 'use strict';
@@ -474,6 +474,7 @@ const MISSIONS = {
 // 3. GRUNDLEGENDE HILFSFUNKTIONEN
 // ============================================================================
 const $ = id => document.getElementById(id);
+// Gleicher Speicher-Schlüssel: bestehende Punkte und Spielstände bleiben erhalten.
 const STORAGE_KEY = 'voechter-im-kuhstall-v1';
 const HOST_KEY = 'voechter-im-kuhstall-host-v1';
 let state = null;
@@ -733,7 +734,7 @@ function renderMissions() {
       mission.phase === state.phase && !state.done.includes(mission.id));
     const currentPhaseMissions = missions.filter(mission => mission.phase === state.phase);
     const completed = currentPhaseMissions.filter(mission => state.done.includes(mission.id)).length;
-    addText(list, 'p', `Phase ${state.phase}: ${completed} von ${currentPhaseMissions.length} Missionen erledigt.`, 'small');
+    addText(list, 'p', `Phase ${state.phase}: ${completed} von ${currentPhaseMissions.length} Missionen erledigt. Es wird immer nur eine aktuelle Aufgabe angezeigt.`, 'small');
 
     if (!next) {
       const hasLocked = missions.some(mission => mission.phase > state.phase);
@@ -747,7 +748,8 @@ function renderMissions() {
     addText(box, 'span', `Phase ${next.phase} · ${next.points} Punkte`, 'tag');
     addText(box, 'p', next.text);
     box.appendChild(makeButton('✓ Mission erledigt – nächste anzeigen', () => {
-      if (state.phase === 4 || state.done.includes(next.id)) return;
+      // Auch bei verspäteten Klicks nur Aufgaben der aktuell aktiven Phase akzeptieren.
+      if (state.phase !== next.phase || state.done.includes(next.id)) return;
       state.done.push(next.id);
       saveState(); renderPlayer();
     }, ''));
